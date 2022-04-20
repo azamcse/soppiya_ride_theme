@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride_home_top_category</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+        :root {
+            --primaryColor: #FF6600;
+            --secondaryColor: #fff;
+            --themeFont: "Ubuntu";
+        }
+
+        .s1006_universl * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--themeFont);
+        }
+
+        .s1006_container {
+            max-width: 1340px;
+            width: 100%;
+            padding: 0px 20px;
+            margin: 0 auto;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .s1006_common_btn{
+            background-color: transparent;
+            font-size: 12px;
+            font-weight: 400;
+            padding: 8px 20px;
+            color: var(--secondaryColor);
+            border: 1px solid var(--primaryColor);
+            outline: none;
+            position: relative;
+            cursor: pointer;
+
+        }
+
+
+        .s1006_home_top_category_section{
+            background-color: #161616;
+        }
+        .s1006_top_category_area{
+            padding: 25px 0;
+        }
+
+        /* ============== s1006_category_top ============  */
+        .s1006_category_top{
+            margin-bottom: 20px;
+        }
+        .s1006_common_title{
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--secondaryColor);
+        }
+
+        /*============= s1006_category_products_area ============= */
+        .s1006_category_all_products{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            column-gap: 20px;
+            row-gap: 25px;
+        }
+
+        /* s1006_product_top */
+        .s1006_product_top{
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(255,255,255,.05);
+        }
+        .s1006_product_img{
+            transform: translateY(25%);
+        }
+        .s1006_product_img img{
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        /* s1006_product_content */
+        .s1006_product_content{
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .s1006_product_name_wrapper{
+            margin-bottom: 10px;
+        }
+        .s1006_product_name{
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255,255,255,.5);
+        }
+        /* .s1006_view_more_btn_wrapper{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        } */
+        .s1006_view_more_btn{
+            background-color: transparent;
+            border: none;
+            outline: none;
+            font-size: 10px;
+            font-weight: 400;
+            color:var(--primaryColor);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+        .s1006_animate_right_icon{
+            position: absolute;
+            top: 0%;
+            right: 0;
+            transform: translateX(-260%);
+            visibility: hidden;
+            opacity: 0;
+            transition: .3s ease-in-out;
+        }
+        .s1006_arrow_icon_wrapper {
+            display: flex;
+            align-items: center;
+        }
+        .s1006_arrow_right_icon{
+            display: flex;
+        }
+        .s1006_arrow_right_icon svg{
+            width: 4px;
+            height: 6px;
+        }
+
+        /* s1006_view_all_btn_wrapper */
+        .s1006_view_all_btn_wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        @media screen and (min-width:640px){
+
+        .s1006_top_category_area{
+            padding: 40px 0;
+        }
+
+        /* ============== s1006_category_top ============  */
+        .s1006_common_title{
+            font-size: 24px;
+        }
+
+        /*============= s1006_category_products_area ============= */
+        .s1006_category_all_products{
+            grid-template-columns: repeat(3,1fr);
+            column-gap: 25px;
+            row-gap: 30px;
+        }
+
+        /* s1006_product_content */
+
+
+
+        /* s1006_view_all_btn_wrapper */
+        .s1006_view_all_btn_wrapper{
+            margin-top: 40px;
+        }
+        .s1006_view_all_btn{
+            padding: 9px 25px;
+            font-size: 14px;
+        }
+        }
+        @media screen and (min-width:1025px){
+        .s1006_top_category_area{
+            padding: 50px 0;
+        }
+
+        /* ============== s1006_category_top ============  */
+        .s1006_common_title{
+            font-size: 28px;
+        }
+
+        /*============= s1006_category_products_area ============= */
+        .s1006_category_all_products{
+            grid-template-columns: repeat(4,1fr);
+            column-gap: 30px;
+            row-gap: 35px;
+        }
+        .s1006_view_more_btn{
+            cursor: pointer;
+        }
+        .s1006_view_more_btn:hover .s1006_animate_right_icon{
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0);
+        }
+        /* s1006_view_all_btn_wrapper */
+        .s1006_view_all_btn{
+            margin-top: 50px;
+        } 
+        .s1006_view_all_btn{
+            z-index: 2;
+            cursor: pointer;
+        }
+        .s1006_view_all_btn::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1%;
+            height: 100%;
+            background-color: var(--primaryColor);
+            z-index: -1;
+            visibility: hidden;
+            opacity: 0;
+            transition: .3s ease-in-out;
+        }
+        .s1006_view_all_btn:hover:after{
+            width: 100%;
+            visibility: visible;
+            opacity: 1;
+        }
+        }
+        @media screen and (min-width:1367px){
+            .s1006_category_all_products{
+                grid-template-columns: repeat(3,1fr);
+                grid-template-rows: repeat(3, 1fr);
+                row-gap: 30px;
+            }
+            /* s1006_product_content */
+            .s1006_product_content{
+                left: 20px;
+                top: 20px;
+            }
+            .s1006_product_name{
+                font-size: 20px;
+            }
+            .s1006_view_more_btn_wrapper{
+                gap: 14px;
+            }
+            .s1006_view_more_btn{
+                font-size: 14px;
+            }
+            .s1006_arrow_right_icon svg{
+                width: 6px;
+                height: 10px;
+            }
+            .s1006_single_product{
+                position: relative;
+                min-height: 240px;
+            }
+            .s1006_single_product .s1006_product_img img{
+                width: 240px;
+                height: auto;
+                margin-left: auto;
+
+            }
+            .s1006_single_product .s1006_product_img{
+                transform: scale(1);
+                transition: .3s ease-in-out;
+            }
+
+            .s1006_single_product:hover .s1006_product_img{
+                transform:scale(1.1);
+            }
+
+           /*  CHILD  SELECT */
+
+           .s1006_single_product:nth-child(1),
+           .s1006_single_product:nth-child(3),
+           .s1006_single_product:nth-child(4){
+                grid-row: span 2;
+            }
+            .s1006_single_product:nth-child(1) .s1006_product_top,
+            .s1006_single_product:nth-child(3) .s1006_product_top,
+            .s1006_single_product:nth-child(4) .s1006_product_top{
+                height: 100%;
+            }
+            .s1006_single_product:nth-child(1) .s1006_product_img,
+            .s1006_single_product:nth-child(3) .s1006_product_img,
+            .s1006_single_product:nth-child(4) .s1006_product_img{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            .s1006_single_product:nth-child(1):hover .s1006_product_img,
+            .s1006_single_product:nth-child(3):hover .s1006_product_img,
+            .s1006_single_product:nth-child(4):hover .s1006_product_img{
+                transform:translate(-50%, -50%) scale(1.1)
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <section class="s1006_home_top_category_section s1006_universl">
+        <div class="s1006_container">
+            <div class="s1006_top_category_area">
+                <div class="s1006_category_top">
+                    <div class="s1006_common_title_wrapper">
+                        <p class="s1006_common_title">Top  Categories</p>
+                    </div>
+                </div>
+                <div class="s1006_category_products_area">
+                    <div class="s1006_category_all_products"> 
+                        <!-- s1006_single_product -->
+                        <div class="s1006_single_product">
+                            <div class="s1006_product_top">
+                                <div class="s1006_product_img">
+                                    <img src="category_item/Mask Group 9.png" alt="">
+                                </div>
+                                <div class="s1006_product_content">
+                                    <div class="s1006_product_name_wrapper">
+                                        <p class="s1006_product_name">Easy Bike</p>
+                                    </div>
+                                    <div class="s1006_view_more_btn_wrapper">
+                                        <button type="button" class="s1006_view_more_btn">
+                                            View
+                                            <div class="s1006_arrow_icon_wrapper">
+                                                <span class="s1006_arrow_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                                <span class="s1006_animate_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                  
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- s1006_single_product -->
+                        <div class="s1006_single_product">
+                            <div class="s1006_product_top">
+                                <div class="s1006_product_img">
+                                    <img src="category_item/Mask Group 11.png" alt="">
+                                </div>
+                                <div class="s1006_product_content">
+                                    <div class="s1006_product_name_wrapper">
+                                        <p class="s1006_product_name">Easy Bike</p>
+                                    </div>
+                                    <div class="s1006_view_more_btn_wrapper">
+                                        <button type="button" class="s1006_view_more_btn">
+                                            View
+                                            <div class="s1006_arrow_icon_wrapper">
+                                                <span class="s1006_arrow_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                                <span class="s1006_animate_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                  
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- s1006_single_product -->
+                        <div class="s1006_single_product">
+                            <div class="s1006_product_top">
+                                <div class="s1006_product_img">
+                                    <img src="category_item/Imsge.png" alt="">
+                                </div>
+                                <div class="s1006_product_content">
+                                    <div class="s1006_product_name_wrapper">
+                                        <p class="s1006_product_name">Easy Bike</p>
+                                    </div>
+                                    <div class="s1006_view_more_btn_wrapper">
+                                        <button type="button" class="s1006_view_more_btn">
+                                            View
+                                            <div class="s1006_arrow_icon_wrapper">
+                                                <span class="s1006_arrow_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                                <span class="s1006_animate_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                  
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- s1006_single_product -->
+                        <div class="s1006_single_product">
+                            <div class="s1006_product_top">
+                                <div class="s1006_product_img">
+                                    <img src="category_item/Mask Group 13.png" alt="">
+                                </div>
+                                <div class="s1006_product_content">
+                                    <div class="s1006_product_name_wrapper">
+                                        <p class="s1006_product_name">Easy Bike</p>
+                                    </div>
+                                    <div class="s1006_view_more_btn_wrapper">
+                                        <button type="button" class="s1006_view_more_btn">
+                                            View
+                                            <div class="s1006_arrow_icon_wrapper">
+                                                <span class="s1006_arrow_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                                <span class="s1006_animate_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                  
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- s1006_single_product -->
+                        <div class="s1006_single_product">
+                            <div class="s1006_product_top">
+                                <div class="s1006_product_img">
+                                    <img src="category_item/Imsge.png" alt="">
+                                </div>
+                                <div class="s1006_product_content">
+                                    <div class="s1006_product_name_wrapper">
+                                        <p class="s1006_product_name">Easy Bike</p>
+                                    </div>
+                                    <div class="s1006_view_more_btn_wrapper">
+                                        <button type="button" class="s1006_view_more_btn">
+                                            View
+                                            <div class="s1006_arrow_icon_wrapper">
+                                                <span class="s1006_arrow_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                                <span class="s1006_animate_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                  
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- s1006_single_product -->
+                        <div class="s1006_single_product">
+                            <div class="s1006_product_top">
+                                <div class="s1006_product_img">
+                                    <img src="category_item/Mask Group 11.png" alt="">
+                                </div>
+                                <div class="s1006_product_content">
+                                    <div class="s1006_product_name_wrapper">
+                                        <p class="s1006_product_name">Easy Bike</p>
+                                    </div>
+                                    <div class="s1006_view_more_btn_wrapper">
+                                        <button type="button" class="s1006_view_more_btn">
+                                            View
+                                            <div class="s1006_arrow_icon_wrapper">
+                                                <span class="s1006_arrow_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                                <span class="s1006_animate_right_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.431" height="10" viewBox="0 0 5.431 10">
+                                                        <g id="_01_align_center" data-name="01 align center" transform="translate(-9.4 -5.293)">
+                                                          <path id="Path_1950" data-name="Path 1950" d="M10.452,15.293,9.4,14.239l3.943-3.946L9.4,6.347l1.055-1.054,3.94,3.946a1.491,1.491,0,0,1,0,2.108Z" fill="#f60"/>
+                                                        </g>
+                                                      </svg>                                                                                       
+                                                </span>
+                                  
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s1006_view_all_btn_wrapper">
+                        <button type="button" class="s1006_view_all_btn s1006_common_btn">View All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
