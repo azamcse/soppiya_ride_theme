@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>harvest_item_details</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+        :root {
+            --primaryColor: #FF6600;
+            --secondaryColor: #fff;
+            --themeFont: "Ubuntu";
+        }
+
+        .s100F_universl * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--themeFont);
+        }
+
+        .s100F_container {
+            max-width: 1360px;
+            width: 100%;
+            padding: 0px 20px;
+            margin: 0 auto;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /* ====== s100F_breadcrumb_area ====== */
+
+        .s100F_item_details_section {
+            background-color: #161616;
+        }
+
+        .s100F_breadcrumb_section {
+            background-color: rgba(255, 255, 255, .05)
+        }
+
+        .s100F_breadcrumb_area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 0px;
+        }
+
+        .s100F_breadcrumb_list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            gap: 7px;
+        }
+
+        .s100F_breadcrumb_item {
+            position: relative;
+        }
+
+
+        .s100F_breadcrumb_link {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, .4);
+        }
+
+
+        /* ======= s100F_item_details_area ========= */
+        .s100F_item_details_area {
+            padding-top: 40px;
+        }
+
+        .s100F_item_details_content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding-bottom: 25px;
+        }
+
+
+        /* s100F_item_details_left_content */
+
+        .s100F_item_details_left_content {
+            max-width: 320px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        /* s100F_large_item_image */
+        .s100F_large_item_image {
+            width: calc(100% - 65px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, .05);
+        }
+
+        .s100F_large_item_image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* s100F_gallery_image_wrapper */
+
+        .s100F_gallery_image_wrapper {
+            width: 55px;
+            height: 255px;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .s100F_gallery_image_wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .s100F_gallery_image {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .s0210_single_image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, .05);
+            position: relative;
+            cursor: pointer;
+
+        }
+
+
+        .s0210_single_image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .s0210_gallery_image_active {
+            border: 1px solid rgba(255, 102, 0, .5);
+        }
+
+
+
+        /* s100F_item_details_right_content */
+
+        .s100F_item_details_right_content {
+            width: 100%;
+        }
+
+        /* s100F_product_category_wrapper */
+        .s100F_product_category_wrapper {
+            margin-bottom: 15px;
+        }
+
+        .s100F_product_category_txt {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .s100F_product_review_number {
+            font-size: 10px;
+            font-weight: 400;
+            color: #fff;
+        }
+
+        .s100F_product_name_wrapper {
+            margin-bottom: 10px;
+        }
+
+        .s100F_product_name_txt {
+            font-size: 20px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .s100F_product_review_area {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 30px;
+        }
+
+        .s100F_product_review_icons {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .s100F_product_review_icon {
+            display: flex;
+        }
+
+        .s100F_product_review_icon svg {
+            width: 13px;
+            height: 13px;
+        }
+
+
+        /* s100F_product_price_wrapper */
+        .s100F_product_price_wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: fit-content;
+            margin-bottom: 30px;
+        }
+
+        .s020_product_old_price_txt,
+        .s020_product_present_price_txt {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .5);
+            position: relative;
+        }
+
+        .s020_product_old_price_txt::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 1px;
+            background-color: #fff;
+        }
+
+        .s020_product_present_price_txt {
+            color: var(--primaryColor);
+        }
+
+        /* s100F_product_variation_wrapper */
+
+        .s100F_product_variation_title_wrapper {
+            margin-bottom: 10px;
+        }
+
+        .s100F_product_variation_title {
+            font-size: 12px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .s100F_product_variation_area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .s100F_product_variation_item {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .5);
+            border: 1px solid rgba(255, 255, 255, .5);
+            padding: 5px 15px 5px 15px;
+            display: block;
+        }
+
+        .s100F_active_variant_item {
+            color: var(--secondaryColor);
+            background-color: var(--primaryColor);
+            border: var(--primaryColor);
+        }
+
+        /* s100F_cart_btn_and_wishlist_icon_wrapper */
+        .s100F_cart_btn_and_wishlist_icon_wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .s100F_cart_btn {
+            font-size: 14px;
+            font-weight: 500;
+            padding: 7px 23px 7px 23px;
+            border: 1px solid var(--primaryColor);
+            background: var(--primaryColor);
+            color: var(--secondaryColor);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .s100F_wishlist_icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, .5);
+            cursor: pointer;
+        }
+
+        .s100F_wishlist_icon_active svg path {
+            fill: var(--primaryColor);
+        }
+
+        /* s100F_product_return_policy_wrapper */
+
+        .s100F_product_return_policy_wrapper {
+            margin-top: 10px;
+        }
+
+
+        .s100F_product_return_policy {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .5);
+        }
+
+        /* s100F_product_share_media_wrapper */
+
+        .s100F_product_share_media_wrapper {
+            margin-top: 30px;
+        }
+
+        .s100F_share_media_title_wrapper {
+            margin-bottom: 10px;
+        }
+
+        .s100F_share_media_title {
+            font-size: 12px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .s100F_social_media_list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .s100F_social_media_icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .s100F_social_media_icon svg path {
+            fill: var(--primaryColor);
+        }
+
+
+        /* s100F_product_descripton_and_review_area */
+
+        .s100F_description_and_review_btn_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .s100F_description_btn,
+        .s100F_review_btn {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .s100F_active_item_section {
+            color: var(--primaryColor);
+        }
+
+        .s100F_hidden_section {
+            display: none;
+        }
+
+        /* s100F_product_descripton_and_review_area */
+        .s100F_product_descripton_and_review_area {
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+
+        .s100F_product_descripton_and_review_area_wrapepr {
+            position: relative;
+        }
+
+        .s100F_product_descripton_area {
+            width: 100%;
+        }
+
+
+
+        /* s100F_product_review_box */
+
+        .s100F_product_review_box {
+            width: 100%;
+
+        }
+
+        .s100F_total_review_area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 30px;
+        }
+
+        .s100F_review_rating_number_wrapper {
+            display: flex;
+            align-items: center;
+
+        }
+
+        .s100F_total_rating_point {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .s100F_total_rating_number {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .s100F_review_rating_icon_wrapper {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .s100F_review_rating_icon svg {
+            width: 17px;
+            height: 17px;
+            display: flex;
+        }
+
+        .s100F_total_reviews {
+            font-size: 10px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, .5);
+        }
+
+        /* s100F_review_list */
+
+
+        .s100F_single_review {
+            padding: 20px 0px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .s100F_single_review:first-child {
+            padding-top: 0px;
+        }
+
+        .s100F_single_review:last-child {
+            padding-bottom: 0px;
+            border-bottom: unset;
+        }
+
+        .s100F_review_list .s100F_review_rating_icon_wrapper {
+            margin-bottom: 5px;
+        }
+
+        .s100F_review_list .s100F_review_rating_icon svg {
+            width: 13px;
+            height: 13px;
+            display: flex;
+        }
+
+        .s100F_review_person_name_wrapper {
+            margin-bottom: 15px;
+        }
+
+        .s100F_review_person_name,
+        .s100F_review_content_txt {
+            font-size: 12px;
+            line-height: 22px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .s100F_review_content_txt {
+            color: rgba(255, 255, 255, .7);
+        }
+
+
+
+        @media screen and (min-width:640px) {
+
+
+            /* ====== s100F_breadcrumb_area ====== */
+
+            .s100F_breadcrumb_area {
+                padding: 40px 0px;
+            }
+
+            .s100F_breadcrumb_link {
+                font-size: 14px;
+            }
+
+
+            /* ======= s100F_item_details_area ========= */
+            .s100F_item_details_area {
+                padding-top: 70px;
+            }
+
+            .s100F_item_details_content {
+                gap: 30px;
+                padding-bottom: 35px;
+            }
+
+            /* s100F_item_details_left_content */
+
+            .s100F_item_details_left_content {
+                max-width: 687px;
+                gap: 20px;
+            }
+
+
+            /* s100F_large_item_image */
+
+            .s100F_large_item_image {
+                width: calc(100% - 140px);
+            }
+
+            /* s100F_gallery_image_wrapper */
+
+            .s100F_gallery_image_wrapper {
+                width: 120px;
+                height: 547px;
+            }
+
+            /* s100F_product_category_wrapper */
+            .s100F_product_category_wrapper {
+                margin-bottom: 20px;
+            }
+
+            .s100F_product_category_txt {
+                font-size: 14px;
+            }
+
+            .s100F_product_review_area {
+                margin-bottom: 40px;
+            }
+
+            .s100F_product_name_txt {
+                font-size: 24px;
+            }
+
+            .s100F_product_review_icon svg {
+                width: 15px;
+                height: 15px;
+            }
+
+            .s100F_product_review_number {
+                font-size: 12px;
+            }
+
+            /* s100F_product_price_wrapper */
+            .s100F_product_price_wrapper {
+                margin-bottom: 40px;
+            }
+
+            .s020_product_old_price_txt,
+            .s020_product_present_price_txt {
+                font-size: 16px;
+            }
+
+            /* s100F_product_variation_wrapper */
+            .s100F_product_variation_title_wrapper {
+                margin-bottom: 15px;
+            }
+
+            .s100F_product_variation_title {
+                font-size: 14px;
+            }
+
+            .s100F_product_variation_item {
+                font-size: 14px;
+                padding: 5px 8px 5px 10px;
+            }
+
+            /* s100F_cart_btn_and_wishlist_icon_wrapper */
+            .s100F_cart_btn {
+                font-size: 14px;
+                padding: 9px 25px 9px 25px;
+            }
+
+            .s100F_wishlist_icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            /* s100F_product_return_policy_wrapper */
+
+            .s100F_product_return_policy_wrapper {
+                margin-top: 12px;
+            }
+
+            .s100F_product_return_policy {
+                font-size: 12px;
+            }
+
+            /* s100F_product_share_media_wrapper */
+
+            .s100F_product_share_media_wrapper {
+                margin-top: 38px;
+            }
+
+            .s100F_share_media_title_wrapper {
+                margin-bottom: 15px;
+            }
+
+            .s100F_share_media_title {
+                font-size: 14px;
+            }
+
+            /* s100F_product_descripton_and_review_area */
+
+            .s100F_product_descripton_and_review_area {
+                padding-top: 35px;
+                padding-bottom: 35px;
+            }
+
+            .s100F_description_and_review_btn_wrapper {
+                gap: 25px;
+                margin-bottom: 35px;
+            }
+
+            /* s100F_product_review_box */
+
+            .s100F_total_review_area {
+                gap: 12px;
+                margin-bottom: 35px;
+            }
+
+            .s100F_review_rating_number_wrapper {
+                gap: 3px;
+            }
+
+            .s100F_total_rating_number {
+                font-size: 14px;
+            }
+
+            .s100F_review_rating_icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .s100F_total_reviews {
+                font-size: 12px;
+
+            }
+
+            /* s100F_review_list */
+
+            .s100F_review_list .s100F_review_rating_icon_wrapper {
+                margin-bottom: 10px;
+            }
+
+            .s100F_review_person_name,
+            .s100F_review_content_txt {
+                font-size: 14px;
+            }
+
+        }
+
+
+        @media screen and (min-width:1025px) {
+
+            /* ====== s100F_breadcrumb_area ====== */
+            .s100F_breadcrumb_area {
+                padding: 60px 0px;
+            }
+
+            /* s100F_cart_title_wrapper */
+            .s100F_cart_title_txt {
+                font-size: 28px;
+            }
+
+
+            /* ======= s100F_item_details_area ========= */
+            .s100F_item_details_area {
+                padding-top: 100px;
+            }
+
+            .s100F_item_details_content {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 40px;
+                padding-bottom: 50px;
+            }
+
+            /* s100F_item_details_left_content */
+            .s100F_item_details_left_content {
+                width: 640px;
+            }
+
+            .s100F_large_item_image {
+                order: 2;
+            }
+
+            /* s100F_gallery_image_wrapper */
+
+            .s100F_gallery_image_wrapper {
+                height: 500px;
+            }
+
+            /* s100F_item_details_right_content */
+            .s100F_item_details_right_content {
+                width: calc(100% - 680px);
+            }
+
+            /* s100F_product_variation_wrapper */
+            .s100F_product_variation_item {
+                padding: 5px 7px 5px 9px;
+            }
+
+            /* s100F_product_share_media_wrapper */
+
+            .s100F_product_share_media_wrapper {
+                margin-top: 40px;
+            }
+
+            .s100F_share_media_title_wrapper {
+                margin-bottom: 17px;
+            }
+
+            /* s100F_product_descripton_and_review_area */
+
+            .s100F_product_descripton_and_review_area {
+                padding-top: 50px;
+                padding-bottom: 50px;
+            }
+
+            .s100F_description_and_review_btn_wrapper {
+                margin-bottom: 40px;
+            }
+
+            /* s100F_product_review_box */
+            .s100F_total_review_area {
+                margin-bottom: 40px;
+            }
+
+            .s100F_review_rating_icon_wrapper {
+                margin-top: 2px;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="s100F_item_details_section s100F_universl">
+        <!-- s100F_breadcrumb_area -->
+        <div class="s100F_breadcrumb_section">
+            <div class="s100F_breadcrumb_area">
+                <div class="s100F_breadcrumb_nav_area">
+                    <ul class="s100F_breadcrumb_list">
+                        <li class="s100F_breadcrumb_item">
+                            <span class="s100F_breadcrumb_link">Home</span>
+                        </li>
+                        <span class="s100F_breadcrumb_separator">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="3.586" height="7" viewBox="0 0 3.586 7">
+                                <path id="angle-small-right_1_" data-name="angle-small-right (1)"
+                                    d="M12.252,7.439,9.957,5.145a.5.5,0,1,0-.7.71l2.3,2.29a.5.5,0,0,1,0,.71l-2.3,2.29a.5.5,0,1,0,.7.71l2.295-2.295A1.5,1.5,0,0,0,12.252,7.439Z"
+                                    transform="translate(-9.104 -4.999)" fill="#fff" opacity="0.4" />
+                            </svg>
+                        </span>
+                        <li class="s100F_breadcrumb_item">
+                            <span class="s100F_breadcrumb_link">All Items</span>
+                        </li>
+                        <span class="s100F_breadcrumb_separator">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="3.586" height="7" viewBox="0 0 3.586 7">
+                                <path id="angle-small-right_1_" data-name="angle-small-right (1)"
+                                    d="M12.252,7.439,9.957,5.145a.5.5,0,1,0-.7.71l2.3,2.29a.5.5,0,0,1,0,.71l-2.3,2.29a.5.5,0,1,0,.7.71l2.295-2.295A1.5,1.5,0,0,0,12.252,7.439Z"
+                                    transform="translate(-9.104 -4.999)" fill="#fff" opacity="0.4" />
+                            </svg>
+                        </span>
+                        <li class="s100F_breadcrumb_item">
+                            <span class="s100F_breadcrumb_link">Melon I Mango</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- s100F_item_details_area -->
+        <div class="s100F_item_details_area">
+            <div class="s100F_container">
+                <div class="s100F_item_details_content">
+                    <!-- s100F_item_details_left_content -->
+                    <div class="s100F_item_details_left_content">
+                        <!-- s100F_large_item_image -->
+                        <div class="s100F_large_item_image">
+                            <img src="item_image/Imsge.png" alt="item1">
+                        </div>
+                        <!-- s100F_gallery_image_wrapper -->
+                        <div class="s100F_gallery_image_wrapper">
+                            <div class="s100F_gallery_image">
+                                <div class="s0210_single_image s0210_gallery_image_active">
+                                    <img src="item_image/Imsge.png" alt="item2">
+                                </div>
+                                <div class="s0210_single_image">
+                                    <img src="item_image/Imsge.png" alt="item2">
+                                </div>
+                                <div class="s0210_single_image">
+                                    <img src="item_image/Imsge.png" alt="item2">
+                                </div>
+                                <div class="s0210_single_image">
+                                    <img src="item_image/Imsge.png" alt="item2">
+                                </div>
+                                <div class="s0210_single_image">
+                                    <img src="item_image/Imsge.png" alt="item2">
+                                </div>
+                                <div class="s0210_single_image">
+                                    <img src="item_image/Imsge.png" alt="item2">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- s100F_item_details_right_content -->
+                    <div class="s100F_item_details_right_content">
+                        <div class="s100F_item_content_area">
+                            <!-- s100F_product_category_wrapper -->
+                            <div class="s100F_product_category_wrapper">
+                                <p class="s100F_product_category_txt">Easy Byke</p>
+                            </div>
+                            <!-- s100F_product_name_wrapper -->
+                            <div class="s100F_product_name_wrapper">
+                                <p class="s100F_product_name_txt">BMC Switzerland</p>
+                            </div>
+                            <!-- s100F_product_review_area -->
+                            <div class="s100F_product_review_area">
+                                <div class="s100F_product_review_icons">
+                                    <span class="s100F_product_review_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                            viewBox="0 0 13 13">
+                                            <path id="Star"
+                                                d="M60.5,74.45,64.517,77l-1.063-4.81L67,68.957l-4.674-.422L60.5,64l-1.826,4.534L54,68.957l3.546,3.234L56.483,77Z"
+                                                transform="translate(-54 -64)" fill="#ffc312" />
+                                        </svg>
+                                    </span>
+                                    <span class="s100F_product_review_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                            viewBox="0 0 13 13">
+                                            <path id="Star"
+                                                d="M60.5,74.45,64.517,77l-1.063-4.81L67,68.957l-4.674-.422L60.5,64l-1.826,4.534L54,68.957l3.546,3.234L56.483,77Z"
+                                                transform="translate(-54 -64)" fill="#ffc312" />
+                                        </svg>
+                                    </span>
+                                    <span class="s100F_product_review_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                            viewBox="0 0 13 13">
+                                            <path id="Star"
+                                                d="M60.5,74.45,64.517,77l-1.063-4.81L67,68.957l-4.674-.422L60.5,64l-1.826,4.534L54,68.957l3.546,3.234L56.483,77Z"
+                                                transform="translate(-54 -64)" fill="#ffc312" />
+                                        </svg>
+                                    </span>
+                                    <span class="s100F_product_review_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                            viewBox="0 0 13 13">
+                                            <path id="Star"
+                                                d="M60.5,74.45,64.517,77l-1.063-4.81L67,68.957l-4.674-.422L60.5,64l-1.826,4.534L54,68.957l3.546,3.234L56.483,77Z"
+                                                transform="translate(-54 -64)" fill="#ffc312" />
+                                        </svg>
+                                    </span>
+                                    <span class="s100F_product_review_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="13" height="13"
+                                            viewBox="0 0 13 13">
+                                            <defs>
+                                                <linearGradient id="linear-gradient" x1="0.039" y1="0.514" x2="0.513"
+                                                    y2="0.514" gradientUnits="objectBoundingBox">
+                                                    <stop offset="0" stop-color="#ffc312" />
+                                                    <stop offset="1" stop-color="#ffc312" />
+                                                    <stop offset="1" stop-color="#fff" stop-opacity="0.2" />
+                                                </linearGradient>
+                                            </defs>
+                                            <path id="Star"
+                                                d="M60.5,74.45,64.517,77l-1.063-4.81L67,68.957l-4.674-.422L60.5,64l-1.826,4.534L54,68.957l3.546,3.234L56.483,77Z"
+                                                transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                        </svg>
+
+                                    </span>
+                                </div>
+                                <span class="s100F_product_review_number">( 0 reviews)</span>
+                            </div>
+                            <!-- s100F_product_price_wrapper -->
+                            <div class="s100F_product_price_wrapper">
+                                <p class="s020_product_old_price_txt">BDT <span
+                                        class="s020_product_old_price">10000</span></p>
+                                <p class="s020_product_present_price_txt">BDT <span
+                                        class="s020_product_present_price">9000</span></p>
+                            </div>
+                            <!-- s100F_product_variation_wrapper -->
+                            <div class="s100F_product_variation_wrapper">
+                                <div class="s100F_product_variation_title_wrapper">
+                                    <p class="s100F_product_variation_title">Select Variation</p>
+                                </div>
+                                <div class="s100F_product_variation_area">
+                                    <span class="s100F_product_variation_item s100F_active_variant_item">250g |
+                                        Black</span>
+                                    <span class="s100F_product_variation_item">250g | Black</span>
+                                    <span class="s100F_product_variation_item">250g | White</span>
+                                    <span class="s100F_product_variation_item">250g | Blue</span>
+                                    <span class="s100F_product_variation_item">20g | Black</span>
+                                    <span class="s100F_product_variation_item">50g | Yellow</span>
+                                    <span class="s100F_product_variation_item">250g | Black</span>
+                                    <span class="s100F_product_variation_item">250g | Black</span>
+                                    <span class="s100F_product_variation_item">250g | Black</span>
+                                    <span class="s100F_product_variation_item">250g | Black</span>
+                                    <span class="s100F_product_variation_item">250g | Black</span>
+                                    <span class="s100F_product_variation_item">250g | Black</span>
+                                    <span class="s100F_product_variation_item">250g | Black</span>
+                                    <span class="s100F_product_variation_item">250g | Black</span>
+                                    <span class="s100F_product_variation_item">250g | Black</span>
+                                    <span class="s100F_product_variation_item">250g | Black</span>
+                                </div>
+                            </div>
+                            <!-- s100F_cart_btn_and_wishlist_icon_wrapper -->
+                            <div class="s100F_cart_btn_and_wishlist_icon_wrapper">
+                                <button type="button" class="s100F_cart_btn">Add to Cart</button>
+                                <div class="s100F_wishlist_icon_wrapper">
+                                    <span class="s100F_wishlist_icon s100F_wishlist_icon_active">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="13.749"
+                                            viewBox="0 0 15 13.749">
+                                            <g id="wishlist" transform="translate(-63.99 -80)" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path
+                                                    d="M75.275,80a4.639,4.639,0,0,0-3.786,2.5A4.639,4.639,0,0,0,67.7,80a3.776,3.776,0,0,0-3.714,3.781c-.043,4.27,3.388,7.307,7.148,9.86a.625.625,0,0,0,.7,0c3.76-2.552,7.191-5.589,7.148-9.86A3.776,3.776,0,0,0,75.275,80Z"
+                                                    stroke="none" />
+                                                <path
+                                                    d="M 67.70403289794922 80.99997711181641 C 66.22335052490234 80.99997711181641 65.00588989257812 82.25231170654297 64.9901123046875 83.79145812988281 C 64.97280120849609 85.51181793212891 65.60117340087891 87.12440490722656 66.91111755371094 88.72136688232422 C 68.23857879638672 90.33967590332031 70.11546325683594 91.72798919677734 71.48974609375 92.67033386230469 C 72.86313629150391 91.72855377197266 74.74044036865234 90.33993530273438 76.06810760498047 88.72136688232422 C 77.37809753417969 87.12435150146484 78.00656127929688 85.51173400878906 77.98941040039062 83.79164123535156 C 77.9736328125 82.25231170654297 76.75615692138672 80.99997711181641 75.27546691894531 80.99997711181641 C 74.51400756835938 80.99997711181641 73.80767822265625 81.30967712402344 73.17611694335938 81.92047119140625 C 72.67247009277344 82.40756225585938 72.40188598632812 82.91347503662109 72.38287353515625 82.94966888427734 C 72.21574401855469 83.29038238525391 71.87234497070312 83.50254821777344 71.49266052246094 83.50454711914062 C 71.49092102050781 83.50455474853516 71.48923492431641 83.50455474853516 71.48748779296875 83.50455474853516 C 71.10888671875 83.50455474853516 70.76476287841797 83.28597259521484 70.59529876708984 82.94706726074219 C 70.5855712890625 82.92758178710938 69.59983062744141 80.99997711181641 67.70403289794922 80.99997711181641 M 67.70403289794922 79.99997711181641 C 70.23979187011719 79.99997711181641 71.48973083496094 82.49984741210938 71.48973083496094 82.49984741210938 C 71.48973083496094 82.49984741210938 72.73969268798828 79.99997711181641 75.27546691894531 79.99997711181641 C 77.3363037109375 79.99997711181641 78.96826934814453 81.72408294677734 78.98936462402344 83.78139495849609 C 79.03193664550781 88.05187225341797 75.60124969482422 91.08883666992188 71.84129333496094 93.64103698730469 C 71.62914276123047 93.78540802001953 71.35033416748047 93.78539276123047 71.13821411132812 93.64103698730469 C 67.37788391113281 91.08883666992188 63.94719696044922 88.05187225341797 63.99015808105469 83.78139495849609 C 64.01125335693359 81.72408294677734 65.64320373535156 79.99997711181641 67.70403289794922 79.99997711181641 Z"
+                                                    stroke="none" fill="#1e272e" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- s100F_product_return_policy_wrapper -->
+                            <div class="s100F_product_return_policy_wrapper">
+                                <p class="s100F_product_return_policy">7 Days Return | 1-5 Days Shipment</p>
+                            </div>
+                            <!-- s100F_product_share_media_wrapper -->
+                            <div class="s100F_product_share_media_wrapper">
+                                <div class="s100F_share_media_title_wrapper">
+                                    <p class="s100F_share_media_title">Share Via</p>
+                                </div>
+                                <nav class="s100F_social_media_nav">
+                                    <ul class="s100F_social_media_list">
+                                        <li class="s100F_social_media_item">
+                                            <a href="#" class="s100F_social_media_link">
+                                                <span class="s100F_social_media_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.496" height="14"
+                                                        viewBox="0 0 6.496 14">
+                                                        <path id="Path_1689" data-name="Path 1689"
+                                                            d="M3.248-8.064H1.04V-9.52a.673.673,0,0,1,.208-.544.62.62,0,0,1,.4-.128H3.216v-2.4l-2.16-.016A3.071,3.071,0,0,0-.768-12.1a2.464,2.464,0,0,0-.88,1.152,3.587,3.587,0,0,0-.224,1.28v1.6H-3.248V-5.6h1.376V1.392H1.04V-5.6H2.992Z"
+                                                            transform="translate(3.248 12.608)" fill="#95ca33" />
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="s100F_social_media_item">
+                                            <a href="#" class="s100F_social_media_link">
+                                                <span class="s100F_social_media_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15.824"
+                                                        viewBox="0 0 15 15.824">
+                                                        <path id="Path_1688" data-name="Path 1688"
+                                                            d="M-.428-9.712a3.63,3.63,0,0,0-1.941.552,4.066,4.066,0,0,0-1.426,1.5,4.124,4.124,0,0,0-.531,2.056A4.171,4.171,0,0,0-3.8-3.552a3.987,3.987,0,0,0,1.426,1.5A3.681,3.681,0,0,0-.42-1.5a3.643,3.643,0,0,0,1.949-.552,4.006,4.006,0,0,0,1.418-1.5A4.171,4.171,0,0,0,3.47-5.608a4.171,4.171,0,0,0-.523-2.056,4.006,4.006,0,0,0-1.418-1.5A3.656,3.656,0,0,0-.428-9.712Zm0,6.64a2.241,2.241,0,0,1-1.206-.344,2.517,2.517,0,0,1-.88-.928,2.566,2.566,0,0,1-.326-1.272A2.521,2.521,0,0,1-2.513-6.88a2.535,2.535,0,0,1,.88-.92A2.241,2.241,0,0,1-.428-8.144,2.241,2.241,0,0,1,.778-7.8a2.535,2.535,0,0,1,.88.92,2.521,2.521,0,0,1,.326,1.264,2.566,2.566,0,0,1-.326,1.272,2.517,2.517,0,0,1-.88.928A2.241,2.241,0,0,1-.428-3.072ZM2.757-13.52h-6.37a4.024,4.024,0,0,0-2.169.624A4.4,4.4,0,0,0-7.344-11.24,4.655,4.655,0,0,0-7.92-8.96v6.7A4.655,4.655,0,0,0-7.344.024,4.4,4.4,0,0,0-5.781,1.68,4.024,4.024,0,0,0-3.613,2.3h6.37A4.1,4.1,0,0,0,4.941,1.68,4.489,4.489,0,0,0,6.488.048a4.694,4.694,0,0,0,.592-2.3v-6.7a4.694,4.694,0,0,0-.592-2.3A4.489,4.489,0,0,0,4.941-12.9,4.1,4.1,0,0,0,2.757-13.52ZM5.594-2.256a3.065,3.065,0,0,1-.379,1.5A2.885,2.885,0,0,1,4.183.336a2.675,2.675,0,0,1-1.426.4h-6.37a2.637,2.637,0,0,1-1.418-.4A2.905,2.905,0,0,1-6.054-.752a3.065,3.065,0,0,1-.379-1.5v-6.7a3.065,3.065,0,0,1,.379-1.5,2.905,2.905,0,0,1,1.024-1.088,2.637,2.637,0,0,1,1.418-.4h6.37a2.675,2.675,0,0,1,1.426.4,2.885,2.885,0,0,1,1.031,1.088,3.065,3.065,0,0,1,.379,1.5ZM3.531-10.912a.968.968,0,0,0-.728.32,1.077,1.077,0,0,0-.3.768,1.049,1.049,0,0,0,.3.76.979.979,0,0,0,.728.312.955.955,0,0,0,.72-.312,1.064,1.064,0,0,0,.3-.76,1.092,1.092,0,0,0-.3-.768A.944.944,0,0,0,3.531-10.912Z"
+                                                            transform="translate(7.92 13.52)" fill="#95ca33" />
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="s100F_social_media_item">
+                                            <a href="#" class="s100F_social_media_link">
+                                                <span class="s100F_social_media_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.016"
+                                                        height="11.376" viewBox="0 0 14.016 11.376">
+                                                        <path id="Path_1687" data-name="Path 1687"
+                                                            d="M7.008-9.952a6.157,6.157,0,0,1-1.664.464,2.666,2.666,0,0,0,.776-.672,2.867,2.867,0,0,0,.488-.928,5.243,5.243,0,0,1-1.824.7,2.646,2.646,0,0,0-.936-.672,2.879,2.879,0,0,0-1.16-.24,2.755,2.755,0,0,0-1.44.392A2.923,2.923,0,0,0,.208-9.856a2.8,2.8,0,0,0-.384,1.44,2.9,2.9,0,0,0,.064.656,8.112,8.112,0,0,1-3.312-.9,8.193,8.193,0,0,1-2.608-2.112,2.9,2.9,0,0,0-.384,1.432A2.832,2.832,0,0,0-6.072-7.96a2.9,2.9,0,0,0,.936,1.032,2.609,2.609,0,0,1-1.3-.368v.048a2.777,2.777,0,0,0,.648,1.824,2.828,2.828,0,0,0,1.656.992,2.912,2.912,0,0,1-.768.1,2.7,2.7,0,0,1-.528-.048A2.772,2.772,0,0,0-4.416-2.968,2.786,2.786,0,0,0-2.752-2.4a5.505,5.505,0,0,1-1.656.912,5.779,5.779,0,0,1-1.912.32q-.208,0-.64-.032h-.048A8.025,8.025,0,0,0-2.592.08a8.283,8.283,0,0,0,3.5-.736,7.775,7.775,0,0,0,2.56-1.92A8.583,8.583,0,0,0,5.04-5.2a8.228,8.228,0,0,0,.528-2.88v-.384A5.792,5.792,0,0,0,7.008-9.952Z"
+                                                            transform="translate(7.008 11.296)" fill="#95ca33" />
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="s100F_social_media_item">
+                                            <a href="#" class="s100F_social_media_link">
+                                                <span class="s100F_social_media_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="10.848"
+                                                        height="14.004" viewBox="0 0 10.848 14.004">
+                                                        <path id="Path_1686" data-name="Path 1686"
+                                                            d="M.336-12.608a6.306,6.306,0,0,0-3.2.8,5.218,5.218,0,0,0-1.92,1.9,4.616,4.616,0,0,0-.64,2.32,4.175,4.175,0,0,0,.4,1.888A2.326,2.326,0,0,0-3.776-4.512.312.312,0,0,0-3.52-4.5.261.261,0,0,0-3.376-4.7l.176-.64a.532.532,0,0,0,.008-.24.637.637,0,0,0-.136-.208,2.406,2.406,0,0,1-.528-1.584,3.907,3.907,0,0,1,.488-1.912A3.6,3.6,0,0,1-2-10.688a4.1,4.1,0,0,1,2.112-.544,3.776,3.776,0,0,1,1.824.416,2.69,2.69,0,0,1,1.128,1.08,3.188,3.188,0,0,1,.392,1.592A6.849,6.849,0,0,1,3.136-6a3.709,3.709,0,0,1-.9,1.536A1.853,1.853,0,0,1,.9-3.872,1.32,1.32,0,0,1,.16-4.08a1.233,1.233,0,0,1-.472-.568,1.235,1.235,0,0,1-.056-.776q.1-.384.336-1.152Q.16-7.2.24-7.488a3.606,3.606,0,0,0,.112-.784A1.265,1.265,0,0,0,.08-9.12a.976.976,0,0,0-.816-.368,1.251,1.251,0,0,0-.784.272,1.86,1.86,0,0,0-.56.752,2.669,2.669,0,0,0-.208,1.072,3.337,3.337,0,0,0,.064.656,2.747,2.747,0,0,0,.128.448l.064.16-1.04,4.384A8.421,8.421,0,0,0-3.1,1.216l.016.1a.1.1,0,0,0,.08.08A.111.111,0,0,0-2.9,1.36l.048-.048A8.075,8.075,0,0,0-1.44-1.28l.56-2.208a1.7,1.7,0,0,0,.768.712,2.53,2.53,0,0,0,1.2.3A3.758,3.758,0,0,0,3.36-3.216a4.717,4.717,0,0,0,1.512-1.96A6.948,6.948,0,0,0,5.424-8a4.321,4.321,0,0,0-.64-2.264,4.539,4.539,0,0,0-1.76-1.672A5.406,5.406,0,0,0,.336-12.608Z"
+                                                            transform="translate(5.424 12.608)" fill="#95ca33" />
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="s100F_social_media_item">
+                                            <a href="#" class="s100F_social_media_link">
+                                                <span class="s100F_social_media_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="13.92"
+                                                        height="14.016" viewBox="0 0 13.92 14.016">
+                                                        <path id="Path_1685" data-name="Path 1685"
+                                                            d="M5.936-12.608H-5.92a1.016,1.016,0,0,0-.736.3.958.958,0,0,0-.3.712V.4a.958.958,0,0,0,.3.712,1.016,1.016,0,0,0,.736.3H5.936a1,1,0,0,0,.72-.3A.958.958,0,0,0,6.96.4v-12a.958.958,0,0,0-.3-.712A1,1,0,0,0,5.936-12.608ZM-2.736-.88h-2.1V-7.2h2.1ZM-3.792-8.064h-.016a1.141,1.141,0,0,1-.832-.312,1.049,1.049,0,0,1-.32-.784,1.037,1.037,0,0,1,.328-.784,1.191,1.191,0,0,1,.856-.312,1.163,1.163,0,0,1,.848.312,1.049,1.049,0,0,1,.32.784,1.049,1.049,0,0,1-.32.784A1.185,1.185,0,0,1-3.792-8.064ZM4.832-.88h-2.1V-4.272A1.816,1.816,0,0,0,2.5-5.3a.921.921,0,0,0-.816-.4,1.1,1.1,0,0,0-.7.24,1.5,1.5,0,0,0-.384.528,1.665,1.665,0,0,0-.064.512V-.88h-2.1V-3.824q.016-3.008,0-3.376h2.1v.9a2.1,2.1,0,0,1,1.888-1.04,2.246,2.246,0,0,1,1.728.688,3.065,3.065,0,0,1,.688,2.144Z"
+                                                            transform="translate(6.96 12.608)" fill="#95ca33" />
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- s100F_product_descripton_and_review_area -->
+                <div class="s100F_product_descripton_and_review_area">
+                    <!-- s100F_description_and_review_btn_wrapper -->
+                    <div class="s100F_description_and_review_btn_wrapper">
+                        <button type="button" class="s100F_description_btn">Description</button>
+                        <button type="button" class="s100F_review_btn s100F_active_item_section">Review</button>
+                    </div>
+                    <!-- s100F_product_descripton_and_review_area_wrapepr -->
+                    <div class="s100F_product_descripton_and_review_area_wrapepr">
+                        <!-- s100F_product_descripton_area -->
+                        <div class="s100F_product_descripton_area s100F_hidden_section">
+
+                        </div>
+                        <!-- s100F_product_review_box -->
+                        <div class="s100F_product_review_box">
+                            <!-- s100F_total_review_area -->
+                            <div class="s100F_total_review_area">
+                                <div class="s100F_review_rating_number_wrapper">
+                                    <span class="s100F_total_rating_point">4.4</span>
+                                    <span class="s100F_total_rating_number">/5</span>
+                                </div>
+                                <div class="s100F_review_rating_icon_wrapper">
+                                    <span class="s100F_review_rating_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 20 20">
+                                            <path id="Star"
+                                                d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                transform="translate(-54 -64)" fill="#ffc312" />
+                                        </svg>
+                                    </span>
+                                    <span class="s100F_review_rating_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 20 20">
+                                            <path id="Star"
+                                                d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                transform="translate(-54 -64)" fill="#ffc312" />
+                                        </svg>
+                                    </span>
+                                    <span class="s100F_review_rating_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 20 20">
+                                            <path id="Star"
+                                                d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                transform="translate(-54 -64)" fill="#ffc312" />
+                                        </svg>
+                                    </span>
+                                    <span class="s100F_review_rating_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 20 20">
+                                            <path id="Star"
+                                                d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                transform="translate(-54 -64)" fill="#ffc312" />
+                                        </svg>
+                                    </span>
+                                    <span class="s100F_review_rating_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20"
+                                            viewBox="0 0 20 20">
+                                            <defs>
+                                                <linearGradient id="linear-gradient" x1="0.038" y1="0.514" x2="0.513"
+                                                    y2="0.514" gradientUnits="objectBoundingBox">
+                                                    <stop offset="0" stop-color="#ffc312" />
+                                                    <stop offset="1" stop-color="#ffc312" />
+                                                    <stop offset="1" stop-color="#fff" stop-opacity="0.2" />
+                                                </linearGradient>
+                                            </defs>
+                                            <path id="Star"
+                                                d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="s100F_total_reviews_wrapper">
+                                    <span class="s100F_total_reviews">164 reviews</span>
+                                </div>
+                            </div>
+                            <!-- s100F_review_list -->
+                            <div class="s100F_review_list">
+                                <!-- s100F_single_review -->
+                                <div class="s100F_single_review">
+                                    <!-- s100F_review_rating_icon_wrapper -->
+                                    <div class="s100F_review_rating_icon_wrapper">
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.038" y1="0.514"
+                                                        x2="0.513" y2="0.514" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="1" stop-color="#ffc312" />
+                                                        <stop offset="1" stop-color="#1e272e" stop-opacity="0.2" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="s100F_review_person_name_wrapper">
+                                        <p class="s100F_review_person_name">By Tom Collins</p>
+                                    </div>
+                                    <div class="s100F_review_content_wrapper">
+                                        <p class="s100F_review_content_txt">
+                                            In consequat, quam id sodales hendrerit, eros mi molestie leo, nec lacinia
+                                            risus neque tristique augue. Proin tempus urna vel congue elementum.
+                                            Vestibulum euismod accumsan dui, ac iaculis sem viverra eu. Donec convallis,
+                                            elit vitae ornare cursus, libero purus facilisis felis, a volutpat metus
+                                            tortor bibendum elit.
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- s100F_single_review -->
+                                <div class="s100F_single_review">
+                                    <!-- s100F_review_rating_icon_wrapper -->
+                                    <div class="s100F_review_rating_icon_wrapper">
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.038" y1="0.514"
+                                                        x2="0.513" y2="0.514" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="1" stop-color="#ffc312" />
+                                                        <stop offset="1" stop-color="#1e272e" stop-opacity="0.2" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="s100F_review_person_name_wrapper">
+                                        <p class="s100F_review_person_name">By Tom Collins</p>
+                                    </div>
+                                    <div class="s100F_review_content_wrapper">
+                                        <p class="s100F_review_content_txt">
+                                            In consequat, quam id sodales hendrerit, eros mi molestie leo, nec lacinia
+                                            risus neque tristique augue. Proin tempus urna vel congue elementum.
+                                            Vestibulum euismod accumsan dui, ac iaculis sem viverra eu. Donec convallis,
+                                            elit vitae ornare cursus, libero purus facilisis felis, a volutpat metus
+                                            tortor bibendum elit.
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- s100F_single_review -->
+                                <div class="s100F_single_review">
+                                    <!-- s100F_review_rating_icon_wrapper -->
+                                    <div class="s100F_review_rating_icon_wrapper">
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.038" y1="0.514"
+                                                        x2="0.513" y2="0.514" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="1" stop-color="#ffc312" />
+                                                        <stop offset="1" stop-color="#1e272e" stop-opacity="0.2" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="s100F_review_person_name_wrapper">
+                                        <p class="s100F_review_person_name">By Tom Collins</p>
+                                    </div>
+                                    <div class="s100F_review_content_wrapper">
+                                        <p class="s100F_review_content_txt">
+                                            In consequat, quam id sodales hendrerit, eros mi molestie leo, nec lacinia
+                                            risus neque tristique augue. Proin tempus urna vel congue elementum.
+                                            Vestibulum euismod accumsan dui, ac iaculis sem viverra eu. Donec convallis,
+                                            elit vitae ornare cursus, libero purus facilisis felis, a volutpat metus
+                                            tortor bibendum elit.
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- s100F_single_review -->
+                                <div class="s100F_single_review">
+                                    <!-- s100F_review_rating_icon_wrapper -->
+                                    <div class="s100F_review_rating_icon_wrapper">
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.038" y1="0.514"
+                                                        x2="0.513" y2="0.514" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="1" stop-color="#ffc312" />
+                                                        <stop offset="1" stop-color="#1e272e" stop-opacity="0.2" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="s100F_review_person_name_wrapper">
+                                        <p class="s100F_review_person_name">By Tom Collins</p>
+                                    </div>
+                                    <div class="s100F_review_content_wrapper">
+                                        <p class="s100F_review_content_txt">
+                                            In consequat, quam id sodales hendrerit, eros mi molestie leo, nec lacinia
+                                            risus neque tristique augue. Proin tempus urna vel congue elementum.
+                                            Vestibulum euismod accumsan dui, ac iaculis sem viverra eu. Donec convallis,
+                                            elit vitae ornare cursus, libero purus facilisis felis, a volutpat metus
+                                            tortor bibendum elit.
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- s100F_single_review -->
+                                <div class="s100F_single_review">
+                                    <!-- s100F_review_rating_icon_wrapper -->
+                                    <div class="s100F_review_rating_icon_wrapper">
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="#ffc312" />
+                                            </svg>
+                                        </span>
+                                        <span class="s100F_review_rating_icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.038" y1="0.514"
+                                                        x2="0.513" y2="0.514" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="1" stop-color="#ffc312" />
+                                                        <stop offset="1" stop-color="#1e272e" stop-opacity="0.2" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="s100F_review_person_name_wrapper">
+                                        <p class="s100F_review_person_name">By Tom Collins</p>
+                                    </div>
+                                    <div class="s100F_review_content_wrapper">
+                                        <p class="s100F_review_content_txt">
+                                            In consequat, quam id sodales hendrerit, eros mi molestie leo, nec lacinia
+                                            risus neque tristique augue. Proin tempus urna vel congue elementum.
+                                            Vestibulum euismod accumsan dui, ac iaculis sem viverra eu. Donec convallis,
+                                            elit vitae ornare cursus, libero purus facilisis felis, a volutpat metus
+                                            tortor bibendum elit.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

@@ -23,9 +23,9 @@
         }
 
         .s1001_container {
-            max-width: 1340px;
+            max-width: 1360px;
             width: 100%;
-            padding: 0px 10px;
+            padding: 0px 20px;
             margin: 0 auto;
         }
 
@@ -88,8 +88,10 @@
         .s1001_header_icon svg path {
             fill: rgba(255, 255, 255, .3);
         }
-
-        .s1001_active_nav_icon svg path {
+        .s1001_active_header_nav_icon svg path{
+            fill: #fff !important;
+        }
+        .s1001_active_footer_nav_icon svg path {
             fill: var(--primaryColor);
         }
 
@@ -131,6 +133,7 @@
             visibility: hidden;
             opacity: 0;
             transition: .5s ease;
+            z-index: 1;
         }
 
         .s1001_open_sidebar.s1001_sidebar::after {
@@ -145,7 +148,7 @@
             width: 275px;
             min-height: 100vh;
             background-color: #000;
-            padding: 30px;
+            padding: 30px 20px;
             z-index: 3;
             transition: .4s ease-in-out;
         }
@@ -175,8 +178,8 @@
         /* s1001_cross_btn_wrapper */
         .s1001_cross_btn_wrapper {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 30px;
+            right: 110%;
         }
 
         .s1001_cross_btn {
@@ -184,12 +187,14 @@
             border: none;
             outline: none;
             cursor: pointer;
+            width: 15px;
+            height: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* s1001_navigation_area */
-        .s1001_navigation_area {
-            width: 184px;
-        }
 
         .s1001_nav_list,
         .s1001_category_nav_list,
@@ -208,7 +213,7 @@
         .s1001_sub_category_nav_list,
         .s1001_sub_sub_category_nav_list {
             margin-top: 20px;
-            gap: 15px;
+            gap: 20px;
         }
 
         .s1001_nav_item,
@@ -232,7 +237,7 @@
         .s1001_nav_txt {
             font-size: 12px;
             font-weight: 500;
-            color: var(--secondaryColor);
+            color: #fff;
 
         }
 
@@ -240,7 +245,7 @@
         .s1001_category_nav .s1001_category_nav_txt {
             font-size: 12px;
             font-weight: 400;
-            color: rgba(255, 255, 255, .2);
+            color: rgba(255, 255, 255, .5);
         }
 
         .s1001_category_nav_list,
@@ -253,6 +258,7 @@
         .s1001_arrow_icon svg {
             transform: rotate(180deg);
             transition: .3s ease;
+            display: flex;
         }
         .s1001_category_arrow_icon svg path{
             fill: rgba(255, 255, 255, .4);
@@ -268,7 +274,7 @@
         .s1001_category_nav,
         .s1001_sub_category_nav,
         .s1001_sub_sub_category_nav {
-            display: none;
+            /* display: none; */
         }
 
         .s1001_show_nav > .s1001_category_nav,
@@ -517,21 +523,21 @@
             ============================================*/
 
             .s1001_sidebar_wrapper {
-                width: 380px;
+                width: 310px;
                 padding: 40px;
             }
 
             /* ============  s1001_sidebar_top ============*/
 
             /* s1001_navigation_area */
-            .s1001_navigation_area {
-                width: 204px;
-            }
 
 
-            .s1001_nav_txt {
-                font-size: 14px;
+            .s1001_nav_txt,
+            .s1001_category_nav .s1001_category_nav_txt
+            {
+                font-size: 14px ;
             }
+
 
             /* =============== s1001_sidebar_bottom =============*/
 
@@ -597,13 +603,7 @@
             }
 
 
-            /*============================================
-            ================== s1001_sidebar ==============
-            ============================================*/
 
-            .s1001_sidebar_wrapper {
-                width: 406px;
-            }
 
 
 
@@ -669,7 +669,7 @@
                                 <span class="s1001_header_icon_name">Cart</span>
                             </li>
                             <li class="s1001_header_icon_nav_item">
-                                <span class="s1001_header_icon">
+                                <span class="s1001_header_icon s1001_active_header_nav_icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
                                         <g id="User" transform="translate(406 40.984)" fill="#f60">
                                             <path
@@ -720,17 +720,16 @@
 
         <div class="s1001_sidebar">
             <div class="s1001_sidebar_wrapper">
+                <div class="s1001_cross_btn_wrapper">
+                    <button type="button" class="s1001_cross_btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+                            <path id="cross_2_" data-name="cross (2)" d="M9.939.819l-.88-.88L4.939,4.06.819-.061l-.88.88L4.06,4.939-.061,9.059l.88.88,4.12-4.121,4.12,4.121.88-.88L5.818,4.939Z" transform="translate(0.061 0.061)"/>
+                        </svg>                          
+                    </button>
+                </div>
                 <!-- s1001_sidebar_top -->
                 <div class="s1001_sidebar_top">
-                    <div class="s1001_cross_btn_wrapper">
-                        <button type="button" class="s1001_cross_btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13">
-                                <path id="cross_2_" data-name="cross (2)"
-                                    d="M12.939,1.083,11.8-.061,6.439,5.3,1.083-.061-.061,1.083,5.3,6.439-.061,11.8l1.144,1.144L6.439,7.582,11.8,12.939,12.939,11.8,7.582,6.439Z"
-                                    transform="translate(0.061 0.061)" fill="#fff" />
-                            </svg>
-                        </button>
-                    </div>
+
                     <nav class="s1001_navigation_area">
                         <ul class="s1001_nav_list">
                             <li class="s1001_nav_item">
@@ -1091,7 +1090,7 @@
                     </span>
                 </li>
                 <li class="s1001_header_icon_nav_item">
-                    <span class="s1001_header_icon s1001_active_nav_icon">
+                    <span class="s1001_header_icon s1001_active_footer_nav_icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
                             <g id="User" transform="translate(406 40.984)" fill="#f60">
                                 <path

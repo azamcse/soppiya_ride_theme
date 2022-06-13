@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Items</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+        :root {
+            --primaryColor: #FF6600;
+            --secondaryColor: #fff;
+            --themeFont: "Ubuntu";
+        }
+
+        body {
+            margin: 0;
+        }
+
+
+        .s100E_universal * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--themeFont);
+        }
+
+        .s100E_container {
+            max-width: 1340px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+
+
+        /*=====================================
+                   items item list page
+         ======================================
+         */
+
+        .s100E_all_items_products_wrapper {
+            background-color: #161616;
+        }
+
+        .s100E_breadcrumb_nav_wrapper {
+            margin-top: 7px;
+        }
+
+        .s100E_all_items {
+            padding-top: 40px;
+            padding-bottom: 85px;
+        }
+
+        .s100E_all_items_page_breadcrumb {
+            background: rgba(255, 255, 255, .03);
+            padding: 30px 0px;
+        }
+
+        .s100E_breadcrumb_nav {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, .4);
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .s100E_breadcrumb_nav_link {
+            display: inline-block;
+            text-decoration: none;
+            color: rgba(255, 255, 255, .4);
+        }
+        .s100E_breadcrumb_separator svg{
+            display: flex;
+        }
+
+        /* section title */
+        .s100E_section_title_wrapper {
+            text-align: center;
+        }
+
+        .s100E_section_title_text {
+            font-size: 20px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        /* counter */
+
+
+
+
+        /* ===============  product ================*/
+
+        .s100E_card_group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            grid-row-gap: 25px;
+        }
+
+           /* s100E_single_product */
+
+           .s100E_single_product {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .s100E_product_img {
+            height: 100%;
+            width: 100%;
+            display: block;
+            transition: all 0.4s ease-out;
+        }
+
+        .s100E_product_top_area {
+            position: relative;
+        }
+
+        .s100E_product_batch_wrapper {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+
+        .s100E_product_batch_txt {
+            font-size: 10px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 30%);
+            display: flex;
+        }
+
+        .s100E_product_rating {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+        }
+
+        svg {
+            display: flex;
+        }
+
+        .s100E_wishlist_cart_icon_wrapper {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* active add wishlist class (this class add to be span tag) */
+        .s100E_active_wishlist_add svg path {
+            fill: var(--primaryColor);
+        }
+
+
+        /* product bottom area */
+        .s100E_product_bottom_area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding-top: 8px;
+            position: relative;
+        }
+
+        .s100E_product_name_wrapper,
+        .s100E_product_new_price_wrapper,
+        .s100E_product_old_price_wrapper {
+            display: flex;
+        }
+
+        .s100E_product_name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--secondaryColor);
+        }
+
+        .s100E_product_variant {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 30%);
+            display: flex;
+            align-items: center;
+
+        }
+
+        .s100E_product_price_wrapper {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .s100E_product_old_price_wrapper {
+            position: relative;
+        }
+
+
+        .s100E_single_product_background::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 5%);
+            transition: all 0.4s ease-out;
+        }
+
+        .s100E_single_product_bottom_background::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 0%;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 5%);
+            transition: all 0.4s ease-out;
+        }
+
+        .s100E_product_old_price::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 30%);
+            transform: translate(-50%, -60%);
+        }
+
+        .s100E_product_price {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .s100E_product_old_price {
+            color: rgba(255, 255, 255, 30%);
+        }
+
+        .s100E_product_new_price {
+            color: var(--primaryColor);
+        }
+
+       
+
+
+
+
+
+
+
+
+
+
+        /* filter */
+        .s100E_all_items_filter_col_wrapper {
+            width: 100%;
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: 100vh;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 3;
+            transition: all .3s ease;
+        }
+
+        .s100E_active_cate_sidebar.s100E_all_items_filter_col_wrapper {
+            background: rgba(0, 0, 0, .8);
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .s100E_all_items_filter_col {
+            width: 290px;
+            background-color: #000;
+            /* background-color: var(--secondaryColor); */
+            height: 100vh;
+            padding: 32px 30px;
+            position: absolute;
+            top: 0;
+            right: -100%;
+            transition: all .3s ease;
+        }
+
+        .s100E_active_cate_sidebar .s100E_all_items_filter_col {
+            right: 0;
+        }
+
+        /* all product page filter */
+        .s100E_price_range_title,
+        .s100E_categories_title,
+        .s100E_sorting_title {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 26px;
+            color: #fff;
+            ;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .s100E_max_min_price_wrapper {
+            display: flex;
+            justify-content: space-between;
+            /* padding-top: 10px; */
+            margin-bottom: 10px;
+        }
+
+        .s100E_min_price_range,
+        .s100E_max_price_range {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 24px;
+            color: #fff;
+        }
+
+        .s100E_range_slider_bar {
+            position: relative;
+            padding-top: 20px;
+        }
+
+        input[type="range"].s100Erange_control {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 100%;
+            outline: none;
+            position: absolute;
+            margin: auto;
+            top: 50%;
+            bottom: 0;
+            background-color: transparent;
+            pointer-events: none;
+            transform: translateY(-50%);
+        }
+
+        .s100E_slider_track {
+            width: 100%;
+            /* height: 7px; */
+            height: 2px;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+        }
+
+        input[type="range"].s100Erange_control::-webkit-slider-runnable-track {
+            -webkit-appearance: none;
+            /* height: 7px; */
+            height: 2px;
+        }
+
+        input[type="range"].s100Erange_control::-moz-range-track {
+            -moz-appearance: none;
+            /* height: 7px; */
+            height: 2px;
+        }
+
+        input[type="range"].s100Erange_control::-ms-track {
+            appearance: none;
+            /* height: 7px; */
+            height: 2px;
+        }
+
+        input[type="range"].s100Erange_control::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            /* height: 19px;
+            width: 19px; */
+            height: 10px;
+            width: 10px;
+            /* background-color: var(--primaryColor); */
+            background-color: var(--primaryColor);
+            cursor: pointer;
+            margin-top: -4px;
+            pointer-events: auto;
+            box-shadow: 0px 0px 10px rgba(30, 39, 46, .2);
+            /* border: 3px solid #fff; */
+            /* border: 3px solid var(--primaryColor); */
+            border: 1px solid var(--primaryColor);
+
+            border-radius:2px;
+            /* transform: rotate(45deg); */
+        }
+
+        input[type="range"].s100Erange_control::-moz-range-thumb {
+            -webkit-appearance: none;
+            /* height: 19px;
+            width: 19px; */
+            height: 10px;
+            width: 10px;
+            cursor: pointer;
+            background-color: var(--primaryColor);
+            pointer-events: auto;
+            box-shadow: 0px 0px 10px rgba(30, 39, 46, .2);
+            /* border: 3px solid #fff; */
+            border: 1px solid var(--primaryColor);
+            transform: rotate(45deg);
+        }
+
+        input[type="range"].s100Erange_control::-ms-thumb {
+            appearance: none;
+            /* height: 19px;
+            width: 19px; */
+            height: 10px;
+            width: 10px;
+            cursor: pointer;
+            background-color: var(--primaryColor);
+            pointer-events: auto;
+            box-shadow: 0px 0px 10px rgba(30, 39, 46, .2);
+            /* border: 3px solid #fff; */
+            border: 1px solid var(--primaryColor);
+            transform: rotate(45deg);
+        }
+
+
+        .values {
+            background-color: var(--primaryColor);
+            width: 32%;
+            position: relative;
+            margin: auto;
+            padding: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 25px;
+            color: #ffffff;
+        }
+
+        .values:before {
+            content: "";
+            position: absolute;
+            height: 0;
+            width: 0;
+            border-top: 15px solid var(--primaryColor);
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            margin: auto;
+            bottom: -14px;
+            left: 0;
+            right: 0;
+        }
+
+
+        /* sort by */
+        .s100E_price_range_box,
+        .s100E_sorting_box {
+            margin-bottom: 50px;
+        }
+
+        .s100E_sorting_box_items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+
+        .s100E_customGenderBtn:checked,
+        .s100E_customGenderBtn:not(:checked) {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .s100E_customGenderBtn:checked+label,
+        .s100E_customGenderBtn:not(:checked)+label {
+            position: relative;
+            /* padding-left: 24px; */
+            cursor: pointer;
+            font-size: 14px;
+            color: #fff;
+            display: flex;
+            line-height: 17px;
+        }
+
+        .s100E_customGenderBtn:checked+label:before,
+        .s100E_customGenderBtn:not(:checked)+label:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            /* border: 1px solid rgba(255,255,255, .2); */
+            background-color: rgba(255, 255, 255, .2);
+            border-radius: 100%;
+            /* background: transparent; */
+        }
+
+        .s100E_customGenderBtn:checked+label:after,
+        .s100E_customGenderBtn:not(:checked)+label:after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            background: var(--primaryColor);
+            /* border: 4.5px solid var(--primaryColor); */
+            position: absolute;
+            /* top: 1px;
+            right: 1px; */
+            top: 0;
+            right: 0;
+            border-radius: 100%;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .s100E_customGenderBtn:not(:checked)+label:after {
+            opacity: 0;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        .s100E_customGenderBtn:checked+label:after {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        .s100E_categories_nav {
+            list-style: none;
+            /* color: #000; */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .s100E_categories_link {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .s100E_filter_title_wrapper {
+            margin-bottom: 20px;
+        }
+
+
+        .s100E_filter_toggle_btn {
+            position: absolute;
+            top: 37px;
+            right: 305px;
+        }
+
+        .s100E_all_items_filter_content {
+            height: calc(100vh - 86px);
+            overflow-y: scroll;
+            padding-bottom: 45px;
+        }
+
+        .s100E_all_items_filter_content::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+
+        .s100E_filter_toggle_btn {
+            background: transparent;
+            border: navajowhite;
+            outline: none;
+        }
+
+        .s100E_filter_box_btn_area {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .s100E_filter_box_btn {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--primaryColor);
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+
+
+        /* ===========================================
+        ==== add to cart successfully message box ====
+        ============================================*/
+
+        .s100E_add_to_cart_successfull_message_area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .s100E_hide_message_box {
+            visibility: hidden;
+            opacity: 0;
+            transition: all .3s ease-in-out;
+        }
+
+        .s100E_show_message_box {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .s100E_add_to_cart_successfull_message_wrapper {
+            max-width: 242px;
+            height: 68px;
+            width: 100%;
+            border: 1px solid rgb(255 255 255);
+            background: #ffff;
+            padding: 20px;
+            position: relative;
+            display: flex;
+        }
+
+        .s100E_message_close_icon_wrapper {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+        }
+
+        .s100E_message_close_icon {
+            border: navajowhite;
+            outline: navajowhite;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .s100E_message_close_icon svg {
+            width: 10px;
+            height: 10px;
+        }
+
+        .s100E_message_box_wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .s100E_message_txt {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(30, 39, 46, .8);
+        }
+
+        .s100E_message_unsuccessfull_txt {
+            color: #fe5e57;
+        }
+
+
+
+        /*
+         =====================================
+                    end home page flash 
+         ======================================
+         */
+
+
+        @media(min-width:640px) {
+            .s100E_filter_box_btn_area {
+                margin-bottom: 30px;
+            }
+
+            .s100E_filter_box_btn {
+                font-size: 14px;
+            }
+
+            .s100E_all_items {
+                padding: 70px 0;
+            }
+
+            .s100E_all_items_page_breadcrumb {
+                padding: 40px 0px;
+            }
+
+            .s100E_breadcrumb_nav_wrapper {
+                margin-top: 10px;
+            }
+
+            /* section title */
+            .s100E_section_title_text {
+                font-size: 24px;
+            }
+
+            /* counter */
+            .s100E_breadcrumb_nav {
+                font-size: 14px;
+            }
+
+            /*================ product ==============*/
+
+            .s100E_all_items_filter_col {
+                width: 320px;
+            }
+
+            .s100E_card_group {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+                grid-row-gap: 35px;
+            }
+            .s100E_product_batch_txt {
+                font-size: 12px;
+                top: 15px;
+                right: 15px;
+            }
+
+            .s100E_product_rating_start svg {
+                height: 13px;
+                width: 13px;
+            }
+
+            /* product bottom area */
+            .s100E_product_bottom_area {
+                gap: 10px;
+                padding-top: 10px;
+            }
+
+
+            .s100E_product_variant,
+            .s100E_product_name,
+            .s100E_product_price {
+                font-size: 14px;
+            }
+
+            .s100E_product_price_wrapper {
+                gap: 10px;
+            }
+
+            .s100E_wishlist_cart_icon_wrapper {
+                gap: 15px;
+            }
+
+
+
+
+
+
+
+
+           
+            /* filter */
+            /* .s100E_all_items_filter_col_wrapper {} */
+
+            .s100E_all_items_filter_col {
+                width: 300px;
+                padding: 30px;
+            }
+
+            .s100E_filter_toggle_btn {
+                right: 340px;
+            }
+        }
+
+        @media(min-width:1025px) {
+            .s100E_filter_box_btn_area {
+                display: none;
+            }
+
+            .s100E_all_items {
+                padding: 100px 0;
+            }
+
+            .s100E_all_items_page_breadcrumb {
+                padding: 60px 0px;
+            }
+
+            /* section title */
+            .s100E_section_title_text {
+                font-size: 28px;
+            }
+
+            .s100E_all_items_products {
+                display: flex;
+            }
+
+            /* filter */
+            .s100E_all_items_filter_content {
+                height: auto;
+                overflow-y: unset;
+                padding-bottom: 0;
+            }
+
+            .s100E_filter_toggle {
+                display: none;
+            }
+
+            .s100E_all_items_filter_col_wrapper {
+                /* width: 240px; */
+                width: 220px;
+                position: unset;
+                height: auto;
+                background-color: unset;
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .s100E_all_items_filter_col {
+                /* width: 240px; */
+                width: 100%;
+                position: unset;
+                padding: 0px;
+                height: auto;
+                background-color: transparent;
+            }
+
+            /*============= product ==============*/
+
+            .s100E_card_group_wrapper {
+                width: calc(100% - 240px);
+                padding-left: 50px;
+            }
+
+            .s100E_card_group {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .s100E_product_top_area {
+                position: relative;
+            }
+
+
+            .s100E_product_batch_txt {
+                top: 15px;
+                right: 18px;
+            }
+
+            .s100E_product_rating_wrapper {
+                transform: translate(-134%, 0%);
+                transition: all 0.3s ease-out;
+                opacity: 0;
+            }
+
+            /* active wishlist class */
+            .s100E_active_wishlist_add svg path {
+                fill: var(--primaryColor);
+                stroke: var(--primaryColor);
+            }
+
+            .s100E_active_wishlist_add svg g {
+                opacity: 1;
+            }
+
+            /* ::HOVER EFFECT */
+            .s100E_single_product:hover .s100E_single_product_bottom_background:after {
+                height: 110%;
+            }
+
+            .s100E_single_product:hover .s100E_product_img {
+                transform: scale(1.2);
+
+            }
+
+            .s100E_single_product:hover .s100E_product_rating_wrapper {
+                transform: translate(0%, 0%);
+                opacity: 1;
+            }
+
+            .s100E_wishlist_cart_icon_wrapper {
+                visibility: hidden;
+                opacity: 0;
+                transition: .3s ease-in-out;
+            }
+
+            .s100E_single_product:hover .s100E_wishlist_cart_icon_wrapper {
+                visibility: visible;
+                opacity: 1;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+        @media(min-width:1367px) {}
+    </style>
+</head>
+
+<body>
+
+    <div class="s100E_all_items_products_wrapper s100E_universal">
+        <div class="s100E_all_items_page_breadcrumb">
+            <div class="s100E_container">
+                <!-- section title -->
+                <div class="s100E_section_title_wrapper">
+                    <p class="s100E_section_title_text">All Items</p>
+                </div>
+
+                <!-- breadcrumb nav -->
+                <div class="s100E_breadcrumb_nav_wrapper">
+                    <ul class="s100E_breadcrumb_nav">
+                        <li class="s100E_breadcrumb_nav_item">
+                            <a href="" class="s100E_breadcrumb_nav_link">Home</a>
+                        </li>
+                        <span class="s100E_breadcrumb_separator">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="4.099" height="8" viewBox="0 0 4.099 8">
+                                <path id="angle-small-right_1_" data-name="angle-small-right (1)" d="M12.7,7.788,10.079,5.165a.572.572,0,1,0-.806.811L11.9,8.594a.571.571,0,0,1,0,.811L9.273,12.022a.572.572,0,1,0,.806.811L12.7,10.211A1.714,1.714,0,0,0,12.7,7.788Z" transform="translate(-9.104 -4.999)" fill="#fff" opacity="0.4"/>
+                            </svg>                              
+                        </span>
+                        <li class="s100E_breadcrumb_nav_item">
+                            <a href="" class="s100E_breadcrumb_nav_link">All Items</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="s100E_all_items ">
+            <div class="s100E_container">
+                <div class="s100E_filter_box_btn_area">
+                    <button class="s100E_filter_box_btn">
+                        <!-- <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13.004" height="13" viewBox="0 0 13.004 13">
+                                <g id="Icon" transform="translate(13.004) rotate(90)" fill="none">
+                                    <path
+                                        d="M1.694,11.377H0V10.293H1.694a2.167,2.167,0,0,1,4.2,0H13v1.083H5.89a2.167,2.167,0,0,1-4.2,0ZM7.11,7.043H0V5.96H7.11a2.167,2.167,0,0,1,4.2,0H13V7.043H11.307a2.167,2.167,0,0,1-4.2,0ZM1.694,2.71H0V1.627H1.694a2.167,2.167,0,0,1,4.2,0H13V2.71H5.89a2.167,2.167,0,0,1-4.2,0Z"
+                                        stroke="none" />
+                                    <path
+                                        d="M 3.791729927062988 12.00386333465576 C 4.324269771575928 12.00386333465576 4.78902006149292 11.64341354370117 4.921919822692871 11.12730312347412 L 4.99729585647583 10.83460521697998 L 4.922110080718994 10.5435037612915 C 4.789050102233887 10.02838325500488 4.324679851531982 9.668613433837891 3.790640115737915 9.668613433837891 C 3.258749961853027 9.668613433837891 2.794600009918213 10.02818393707275 2.661890029907227 10.54302310943604 L 2.586726665496826 10.83461475372314 L 2.662070035934448 11.12778377532959 C 2.79463005065918 11.64360332489014 3.259160041809082 12.00386333465576 3.791729927062988 12.00386333465576 M 9.208270072937012 7.67060375213623 C 9.741060256958008 7.67060375213623 10.20580959320068 7.310263633728027 10.33845996856689 6.794323444366455 L 10.41384887695312 6.501077651977539 L 10.33872985839844 6.210213661193848 C 10.20567989349365 5.695053577423096 9.741279602050781 5.335253715515137 9.207159996032715 5.335253715515137 C 8.67555046081543 5.335253715515137 8.211350440979004 5.695043563842773 8.078300476074219 6.210203647613525 L 8.003195762634277 6.501016616821289 L 8.07859992980957 6.794423580169678 C 8.211179733276367 7.310303688049316 8.67570972442627 7.67060375213623 9.208270072937012 7.67060375213623 M 3.791729927062988 3.337233543395996 C 4.324250221252441 3.337233543395996 4.789010047912598 2.976743459701538 4.921919822692871 2.460573673248291 L 4.997186183929443 2.168300151824951 L 4.921949863433838 1.876253604888916 C 4.789040088653564 1.360333561897278 4.324269771575928 1.000003576278687 3.791729927062988 1.000003576278687 C 3.259160041809082 1.000003576278687 2.794610023498535 1.360133528709412 2.662039995193481 1.875783562660217 L 2.586834192276001 2.168302774429321 L 2.662070035934448 2.461053609848022 C 2.794650077819824 2.976933479309082 3.259180068969727 3.337233543395996 3.791729927062988 3.337233543395996 M 3.791729927062988 13.00386333465576 C 2.80309009552002 13.00386333465576 1.939710021018982 12.3345832824707 1.693539977073669 11.37668323516846 L -8.881784197001252e-16 11.37668323516846 L -8.881784197001252e-16 10.29342365264893 L 1.693539977073669 10.29342365264893 C 1.940199971199036 9.336514472961426 2.803783893585205 8.667560577392578 3.791729927062988 8.668613433837891 C 4.780283451080322 8.669636726379395 5.643170356750488 9.336514472961426 5.890329837799072 10.29342365264893 L 13 10.29342365264893 L 13 11.37668323516846 L 5.890329837799072 11.37668323516846 C 5.643660068511963 12.3345832824707 4.780379772186279 13.00386333465576 3.791729927062988 13.00386333465576 Z M 9.208270072937012 8.67060375213623 C 8.219619750976562 8.67060375213623 7.356239795684814 8.001223564147949 7.11007022857666 7.043323516845703 L -8.881784197001252e-16 7.043323516845703 L -8.881784197001252e-16 5.960153579711914 L 7.11007022857666 5.960153579711914 C 7.357230186462402 5.003143310546875 8.220758438110352 4.334520816802979 9.208270072937012 4.335253715515137 C 9.20863151550293 4.335253238677979 9.209015846252441 4.335253238677979 9.209378242492676 4.335253238677979 C 10.19707489013672 4.335253238677979 11.05989074707031 5.003494262695312 11.306960105896 5.960153579711914 L 13 5.960153579711914 L 13 7.043323516845703 L 11.306960105896 7.043323516845703 C 11.06068992614746 8.001223564147949 10.19740962982178 8.67060375213623 9.208270072937012 8.67060375213623 Z M 3.791729927062988 4.337233543395996 C 2.80309009552002 4.337233543395996 1.939710021018982 3.667853593826294 1.693539977073669 2.709953546524048 L -8.881784197001252e-16 2.709953546524048 L -8.881784197001252e-16 1.626783609390259 L 1.693539977073669 1.626783609390259 C 1.939710021018982 0.6692835688591003 2.80309009552002 3.574676611606264e-06 3.791729927062988 3.574676611606264e-06 C 4.780379772186279 3.574676611606264e-06 5.643660068511963 0.6692835688591003 5.890329837799072 1.626783609390259 L 13 1.626783609390259 L 13 2.709953546524048 L 5.890329837799072 2.709953546524048 C 5.643660068511963 3.667853593826294 4.780379772186279 4.337233543395996 3.791729927062988 4.337233543395996 Z"
+                                        stroke="none" fill="#fff" />
+                                </g>
+                            </svg>
+                        </span> -->
+                        Filter
+                    </button>
+                </div>
+                <!-- flash sale product -->
+                <div class="s100E_all_items_products">
+                    <div class="s100E_all_items_filter_col_wrapper">
+                        <div class="s100E_all_items_filter_col">
+                            <!-- filter toggle icon -->
+                            <div class="s100E_filter_toggle">
+                                <button class="s100E_filter_toggle_btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.938" height="15.938"
+                                        viewBox="0 0 15.938 15.938">
+                                        <path id="Shape_2" data-name="Shape 2"
+                                            d="M1.013.3l18-.605a.9.9,0,0,1,.965.933,1.07,1.07,0,0,1-1.035,1l-18,.605A.9.9,0,0,1-.021,1.3,1.07,1.07,0,0,1,1.013.3Z"
+                                            transform="translate(0.231 14.342) rotate(-45)" fill="#fff" />
+                                        <path id="Shape_1" data-name="Shape 1"
+                                            d="M.981.016l18,.605a1.07,1.07,0,0,1,1.035,1,.9.9,0,0,1-.965.933l-18-.605a1.07,1.07,0,0,1-1.035-1A.9.9,0,0,1,.981.016Z"
+                                            transform="translate(1.795 -0.021) rotate(45)" fill="#fff" />
+                                    </svg>
+
+                                </button>
+                            </div>
+                            <div class="s100E_all_items_filter_content">
+                                <!-- price range -->
+                                <div class="s100E_price_range_box">
+                                    <div class="s100E_filter_title_wrapper">
+                                        <p class="s100E_price_range_title">Price Range</p>
+                                    </div>
+                                    <!-- min max price -->
+                                    <div class="s100E_max_min_price_wrapper">
+                                        <p class="s100E_min_price_range">BDT <span id="range1">10</span></p>
+                                        <p class="s100E_max_price_range">BDT <span id="range2">10</span></p>
+                                    </div>
+                                    <div class="s100E_range_slider">
+                                        <div class="s100E_range_slider_bar">
+                                            <div class="s100E_slider_track"></div>
+                                            <input class="s100Erange_control" type="range" min="0" max="100" value="30"
+                                                id="s100E_slider_1" oninput="slideOne()">
+                                            <input class="s100Erange_control" type="range" min="0" max="100" value="70"
+                                                id="s100E_slider_2" oninput="slideTwo()">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- sort by -->
+                                <div class="s100E_sorting_box">
+
+                                    <div class="s100E_filter_title_wrapper">
+                                        <p class="s100E_sorting_title">Sort By</p>
+                                    </div>
+                                    <div class="s100E_sorting_box_items">
+                                        <p class="customGenterItem">
+                                            <input class="s100E_customGenderBtn" type="radio" id="s100E_gender1"
+                                                name="gender" checked>
+                                            <label class="s100E_customGendeBtnLabel" for="s100E_gender1">Default</label>
+                                        </p>
+                                        <p class="customGenterItem">
+                                            <input class="s100E_customGenderBtn" type="radio" id="s100E_gender2"
+                                                name="gender" checked>
+                                            <label class="s100E_customGendeBtnLabel" for="s100E_gender2">Most
+                                                Popular</label>
+                                        </p>
+                                        <p class="customGenterItem">
+                                            <input class="s100E_customGenderBtn" type="radio" id="s100E_gender3"
+                                                name="gender" checked>
+                                            <label class="s100E_customGendeBtnLabel" for="s100E_gender3">Price
+                                                (Low > High)</label>
+                                        </p>
+                                        <p class="customGenterItem">
+                                            <input class="s100E_customGenderBtn" type="radio" id="s100E_gender4"
+                                                name="gender" checked>
+                                            <label class="s100E_customGendeBtnLabel" for="s100E_gender4">Price
+                                                (High > Low)</label>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- filter area categories -->
+                                <div class="s100E_sidebar_filter_categories">
+                                    <div class="s100E_filter_title_wrapper">
+                                        <p class="s100E_categories_title">Categories</p>
+                                    </div>
+                                    <ul class="s100E_categories_nav">
+                                        <li class="s100E_categories_item">
+                                            <a class="s100E_categories_link">
+                                                <span class="s100E_categories_items_text">Computers & Accesso</span>
+                                                <span class="s100E_categories_items_count">(10)</span>
+                                            </a>
+                                        </li>
+                                        <li class="s100E_categories_item">
+                                            <a class="s100E_categories_link">
+                                                <span class="s100E_categories_items_text">Mobiles & Tablets</span>
+                                                <span class="s100E_categories_items_count">(10)</span>
+                                            </a>
+                                        </li>
+                                        <li class="s100E_categories_item">
+                                            <a class="s100E_categories_link">
+                                                <span class="s100E_categories_items_text">Cameras, Audio & Vid</span>
+                                                <span class="s100E_categories_items_count">(10)</span>
+                                            </a>
+                                        </li>
+                                        <li class="s100E_categories_item">
+                                            <a class="s100E_categories_link">
+                                                <span class="s100E_categories_items_text">Movies, Music &
+                                                    Video</span>
+                                                <span class="s100E_categories_items_count">(10)</span>
+                                            </a>
+                                        </li>
+                                        <li class="s100E_categories_item">
+                                            <a class="s100E_categories_link">
+                                                <span class="s100E_categories_items_text">TV & Audio</span>
+                                                <span class="s100E_categories_items_count">(10)</span>
+                                            </a>
+                                        </li>
+                                        <li class="s100E_categories_item">
+                                            <a class="s100E_categories_link">
+                                                <span class="s100E_categories_items_text">Watches & Eyewear</span>
+                                                <span class="s100E_categories_items_count">(10)</span>
+                                            </a>
+                                        </li>
+                                        <li class="s100E_categories_item">
+                                            <a class="s100E_categories_link">
+                                                <span class="s100E_categories_items_text">Car, Motorbike &
+                                                    Indu</span>
+                                                <span class="s100E_categories_items_count">(10)</span>
+                                            </a>
+                                        </li>
+                                        <li class="s100E_categories_item">
+                                            <a class="s100E_categories_link">
+                                                <span class="s100E_categories_items_text">Accessories</span>
+                                                <span class="s100E_categories_items_count">(10)</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s100E_card_group_wrapper">
+                        <div class="s100E_card_group">
+
+                        <!--s100E_single_product -->
+                        <div class="s100E_single_product">
+
+                            <div class="s100E_product_top_area s100E_single_product_background">
+
+                                <div class="s100E_product_img_main_wrapper">
+                                    <div class="s100E_product_img_wrapper">
+                                        <img class="s100E_product_img" src="item_image/Imsge.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="s100E_product_batch_wrapper">
+                                    <span class="s100E_product_batch_txt">Sale</span>
+                                </div>
+                                <div class="s100E_wishlist_cart_icon_wrapper">
+                                    <span class="s0604_wishlist_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="9.651" height="9"
+                                            viewBox="0 0 9.651 9">
+                                            <g id="heart_1_" data-name="heart (1)" transform="translate(0.005 -0.917)"
+                                                fill="none">
+                                                <path
+                                                    d="M7.031.917A2.572,2.572,0,0,0,4.82,2.243,2.572,2.572,0,0,0,2.61.917,2.733,2.733,0,0,0,0,3.751c0,2.723,4.4,5.868,4.591,6l.232.164.232-.164c.187-.133,4.591-3.279,4.591-6A2.733,2.733,0,0,0,7.031.917Z"
+                                                    stroke="none" />
+                                                <path
+                                                    d="M 2.62336254119873 1.917606353759766 C 1.688285350799561 1.974246025085449 0.9608860015869141 2.773387908935547 0.9963397979736328 3.713018894195557 L 0.9970502853393555 3.750729084014893 C 0.9970502853393555 5.26716947555542 3.168014526367188 7.429159164428711 4.818565845489502 8.680863380432129 C 5.238452911376953 8.35887336730957 5.981158256530762 7.758644104003906 6.705460548400879 7.022008895874023 C 7.955410003662109 5.750778675079346 8.643790245056152 4.589008808135986 8.643790245056152 3.750729084014893 L 8.644500732421875 3.713018894195557 C 8.679954528808594 2.773387908935547 7.952555656433105 1.974246025085449 7.017477989196777 1.917606353759766 C 6.467202186584473 1.936435699462891 5.962605953216553 2.244806289672852 5.695350170135498 2.727679252624512 L 4.820420265197754 4.308488845825195 L 3.94549036026001 2.727679252624512 C 3.678234577178955 2.244806289672852 3.173638343811035 1.936435699462891 2.62336254119873 1.917606353759766 M 2.609710216522217 0.9169988632202148 C 3.530980110168457 0.9313287734985352 4.374240398406982 1.437278747558594 4.820420265197754 2.243429183959961 C 5.266600131988525 1.437278747558594 6.109860420227051 0.9313287734985352 7.031130313873291 0.9169988632202148 C 8.533160209655762 0.9822587966918945 9.700480461120605 2.248349189758301 9.643790245056152 3.750729084014893 C 9.643790245056152 6.473918914794922 5.240050315856934 9.619958877563477 5.052750110626221 9.752598762512207 L 4.820420265197754 9.916998863220215 L 4.588090419769287 9.752598762512207 C 4.400790214538574 9.619158744812012 -0.002949714660644531 6.473918914794922 -0.002949714660644531 3.750729084014893 C -0.05963993072509766 2.248349189758301 1.10768985748291 0.9822587966918945 2.609710216522217 0.9169988632202148 Z"
+                                                    stroke="rgba(255,255,255,.3)" fill="none" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="s0604_separator">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1" height="10"
+                                            viewBox="0 0 1 10">
+                                            <path id="Path_1938" data-name="Path 1938" d="M0,0V10"
+                                                transform="translate(0.5)" fill="none" stroke="rgba(255,255,255,.3)"
+                                                stroke-width="1" />
+                                        </svg>
+                                    </span>
+                                    <span class="s0604_cart_icon ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9">
+                                            <g id="Union_9" data-name="Union 9" transform="translate(1863 50)"
+                                                fill="none" stroke-linecap="square">
+                                                <path
+                                                    d="M-1857.375-41.75a.75.75,0,0,1,.75-.75.75.75,0,0,1,.75.75.75.75,0,0,1-.75.75A.75.75,0,0,1-1857.375-41.75Zm-3.75,0a.75.75,0,0,1,.75-.75.75.75,0,0,1,.75.75.75.75,0,0,1-.75.75A.75.75,0,0,1-1861.125-41.75Zm.667-1.125a1.125,1.125,0,0,1-1.117-.994l-.594-5.05a.375.375,0,0,0-.372-.331H-1863V-50h.458a1.125,1.125,0,0,1,1.117.994l.016.132H-1854l-.812,4.5h-6.068l.049.418a.375.375,0,0,0,.372.331h4.958v.75Z"
+                                                    stroke="none" />
+                                                <path
+                                                    d="M -1855.6474609375 -45.37534332275391 L -1855.196533203125 -47.87518310546875 L -1861.039672851562 -47.87518310546875 L -1860.745483398438 -45.37534332275391 L -1855.6474609375 -45.37534332275391 M -1856.625 -41.00038146972656 C -1857.0390625 -41.00038146972656 -1857.375 -41.3361930847168 -1857.375 -41.75029373168945 C -1857.375 -42.16440200805664 -1857.0390625 -42.50021362304688 -1856.625 -42.50021362304688 C -1856.2109375 -42.50021362304688 -1855.875122070312 -42.16440200805664 -1855.875122070312 -41.75029373168945 C -1855.875122070312 -41.3361930847168 -1856.2109375 -41.00038146972656 -1856.625 -41.00038146972656 Z M -1860.375 -41.00038146972656 C -1860.789306640625 -41.00038146972656 -1861.124877929688 -41.3361930847168 -1861.124877929688 -41.75029373168945 C -1861.124877929688 -42.16440200805664 -1860.789306640625 -42.50021362304688 -1860.375 -42.50021362304688 C -1859.9609375 -42.50021362304688 -1859.625 -42.16440200805664 -1859.625 -41.75029373168945 C -1859.625 -41.3361930847168 -1859.9609375 -41.00038146972656 -1860.375 -41.00038146972656 Z M -1855.500244140625 -42.87517166137695 L -1860.458251953125 -42.87517166137695 C -1861.0283203125 -42.87551116943359 -1861.50830078125 -43.30244445800781 -1861.575073242188 -43.8687629699707 L -1862.16943359375 -48.91906356811523 C -1862.191650390625 -49.10806274414062 -1862.3515625 -49.25014114379883 -1862.541748046875 -49.25014114379883 L -1863 -49.25014114379883 L -1863 -50.00040435791016 L -1862.541748046875 -50.00040435791016 C -1861.9716796875 -50.00007247924805 -1861.49169921875 -49.57312393188477 -1861.424926757812 -49.00681304931641 L -1861.409423828125 -48.87518310546875 L -1854 -48.87518310546875 L -1854.811645507812 -44.37534332275391 L -1860.8798828125 -44.37534332275391 L -1860.83056640625 -43.95685195922852 C -1860.80859375 -43.76785278320312 -1860.648681640625 -43.62542343139648 -1860.458251953125 -43.62542343139648 L -1855.500244140625 -43.62542343139648 L -1855.500244140625 -42.87517166137695 Z"
+                                                    stroke="rgba(255,255,255,.3)" fill="none" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </div>
+
+
+                            </div>
+
+                            <div class="s100E_product_bottom_area s100E_single_product_bottom_background">
+
+                                <div class="s100E_product_name_wrapper">
+                                    <span class="s100E_product_name">Casual Sun Glass</span>
+                                </div>
+                                <div class="s100E_product_variant_wrapper">
+                                    <span class="s100E_product_variant">Black</span>
+                                </div>
+
+                                <div class="s100E_product_price_wrapper">
+                                    <div class="s100E_product_old_price_wrapper">
+                                        <span class="s100E_product_old_price s100E_product_price"> BDT3500</span>
+                                    </div>
+                                    <div class="s100E_product_new_price_wrapper">
+                                        <span class="s100E_product_new_price s100E_product_price"> BDT3500</span>
+                                    </div>
+                                </div>
+
+                                <div class="s100E_product_rating_wrapper">
+                                    <ul class="s100E_product_rating">
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.03" y1="0.403" x2="0.969"
+                                                        y2="0.408" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="0.51" stop-color="#fbc523" />
+                                                        <stop offset="0.51" stop-color="#d8d5ce" />
+                                                        <stop offset="1" stop-color="#d6d6d6" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--s100E_single_product -->
+                        <div class="s100E_single_product">
+
+                            <div class="s100E_product_top_area s100E_single_product_background">
+
+                                <div class="s100E_product_img_main_wrapper">
+                                    <div class="s100E_product_img_wrapper">
+                                        <img class="s100E_product_img" src="item_image/Imsge.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="s100E_product_batch_wrapper">
+                                    <span class="s100E_product_batch_txt">Sale</span>
+                                </div>
+                                <div class="s100E_wishlist_cart_icon_wrapper">
+                                    <span class="s0604_wishlist_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="9.651" height="9"
+                                            viewBox="0 0 9.651 9">
+                                            <g id="heart_1_" data-name="heart (1)" transform="translate(0.005 -0.917)"
+                                                fill="none">
+                                                <path
+                                                    d="M7.031.917A2.572,2.572,0,0,0,4.82,2.243,2.572,2.572,0,0,0,2.61.917,2.733,2.733,0,0,0,0,3.751c0,2.723,4.4,5.868,4.591,6l.232.164.232-.164c.187-.133,4.591-3.279,4.591-6A2.733,2.733,0,0,0,7.031.917Z"
+                                                    stroke="none" />
+                                                <path
+                                                    d="M 2.62336254119873 1.917606353759766 C 1.688285350799561 1.974246025085449 0.9608860015869141 2.773387908935547 0.9963397979736328 3.713018894195557 L 0.9970502853393555 3.750729084014893 C 0.9970502853393555 5.26716947555542 3.168014526367188 7.429159164428711 4.818565845489502 8.680863380432129 C 5.238452911376953 8.35887336730957 5.981158256530762 7.758644104003906 6.705460548400879 7.022008895874023 C 7.955410003662109 5.750778675079346 8.643790245056152 4.589008808135986 8.643790245056152 3.750729084014893 L 8.644500732421875 3.713018894195557 C 8.679954528808594 2.773387908935547 7.952555656433105 1.974246025085449 7.017477989196777 1.917606353759766 C 6.467202186584473 1.936435699462891 5.962605953216553 2.244806289672852 5.695350170135498 2.727679252624512 L 4.820420265197754 4.308488845825195 L 3.94549036026001 2.727679252624512 C 3.678234577178955 2.244806289672852 3.173638343811035 1.936435699462891 2.62336254119873 1.917606353759766 M 2.609710216522217 0.9169988632202148 C 3.530980110168457 0.9313287734985352 4.374240398406982 1.437278747558594 4.820420265197754 2.243429183959961 C 5.266600131988525 1.437278747558594 6.109860420227051 0.9313287734985352 7.031130313873291 0.9169988632202148 C 8.533160209655762 0.9822587966918945 9.700480461120605 2.248349189758301 9.643790245056152 3.750729084014893 C 9.643790245056152 6.473918914794922 5.240050315856934 9.619958877563477 5.052750110626221 9.752598762512207 L 4.820420265197754 9.916998863220215 L 4.588090419769287 9.752598762512207 C 4.400790214538574 9.619158744812012 -0.002949714660644531 6.473918914794922 -0.002949714660644531 3.750729084014893 C -0.05963993072509766 2.248349189758301 1.10768985748291 0.9822587966918945 2.609710216522217 0.9169988632202148 Z"
+                                                    stroke="rgba(255,255,255,.3)" fill="none" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="s0604_separator">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1" height="10"
+                                            viewBox="0 0 1 10">
+                                            <path id="Path_1938" data-name="Path 1938" d="M0,0V10"
+                                                transform="translate(0.5)" fill="none" stroke="rgba(255,255,255,.3)"
+                                                stroke-width="1" />
+                                        </svg>
+                                    </span>
+                                    <span class="s0604_cart_icon ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9">
+                                            <g id="Union_9" data-name="Union 9" transform="translate(1863 50)"
+                                                fill="none" stroke-linecap="square">
+                                                <path
+                                                    d="M-1857.375-41.75a.75.75,0,0,1,.75-.75.75.75,0,0,1,.75.75.75.75,0,0,1-.75.75A.75.75,0,0,1-1857.375-41.75Zm-3.75,0a.75.75,0,0,1,.75-.75.75.75,0,0,1,.75.75.75.75,0,0,1-.75.75A.75.75,0,0,1-1861.125-41.75Zm.667-1.125a1.125,1.125,0,0,1-1.117-.994l-.594-5.05a.375.375,0,0,0-.372-.331H-1863V-50h.458a1.125,1.125,0,0,1,1.117.994l.016.132H-1854l-.812,4.5h-6.068l.049.418a.375.375,0,0,0,.372.331h4.958v.75Z"
+                                                    stroke="none" />
+                                                <path
+                                                    d="M -1855.6474609375 -45.37534332275391 L -1855.196533203125 -47.87518310546875 L -1861.039672851562 -47.87518310546875 L -1860.745483398438 -45.37534332275391 L -1855.6474609375 -45.37534332275391 M -1856.625 -41.00038146972656 C -1857.0390625 -41.00038146972656 -1857.375 -41.3361930847168 -1857.375 -41.75029373168945 C -1857.375 -42.16440200805664 -1857.0390625 -42.50021362304688 -1856.625 -42.50021362304688 C -1856.2109375 -42.50021362304688 -1855.875122070312 -42.16440200805664 -1855.875122070312 -41.75029373168945 C -1855.875122070312 -41.3361930847168 -1856.2109375 -41.00038146972656 -1856.625 -41.00038146972656 Z M -1860.375 -41.00038146972656 C -1860.789306640625 -41.00038146972656 -1861.124877929688 -41.3361930847168 -1861.124877929688 -41.75029373168945 C -1861.124877929688 -42.16440200805664 -1860.789306640625 -42.50021362304688 -1860.375 -42.50021362304688 C -1859.9609375 -42.50021362304688 -1859.625 -42.16440200805664 -1859.625 -41.75029373168945 C -1859.625 -41.3361930847168 -1859.9609375 -41.00038146972656 -1860.375 -41.00038146972656 Z M -1855.500244140625 -42.87517166137695 L -1860.458251953125 -42.87517166137695 C -1861.0283203125 -42.87551116943359 -1861.50830078125 -43.30244445800781 -1861.575073242188 -43.8687629699707 L -1862.16943359375 -48.91906356811523 C -1862.191650390625 -49.10806274414062 -1862.3515625 -49.25014114379883 -1862.541748046875 -49.25014114379883 L -1863 -49.25014114379883 L -1863 -50.00040435791016 L -1862.541748046875 -50.00040435791016 C -1861.9716796875 -50.00007247924805 -1861.49169921875 -49.57312393188477 -1861.424926757812 -49.00681304931641 L -1861.409423828125 -48.87518310546875 L -1854 -48.87518310546875 L -1854.811645507812 -44.37534332275391 L -1860.8798828125 -44.37534332275391 L -1860.83056640625 -43.95685195922852 C -1860.80859375 -43.76785278320312 -1860.648681640625 -43.62542343139648 -1860.458251953125 -43.62542343139648 L -1855.500244140625 -43.62542343139648 L -1855.500244140625 -42.87517166137695 Z"
+                                                    stroke="rgba(255,255,255,.3)" fill="none" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </div>
+
+
+                            </div>
+
+                            <div class="s100E_product_bottom_area s100E_single_product_bottom_background">
+
+                                <div class="s100E_product_name_wrapper">
+                                    <span class="s100E_product_name">Casual Sun Glass</span>
+                                </div>
+                                <div class="s100E_product_variant_wrapper">
+                                    <span class="s100E_product_variant">Black</span>
+                                </div>
+
+                                <div class="s100E_product_price_wrapper">
+                                    <div class="s100E_product_old_price_wrapper">
+                                        <span class="s100E_product_old_price s100E_product_price"> BDT3500</span>
+                                    </div>
+                                    <div class="s100E_product_new_price_wrapper">
+                                        <span class="s100E_product_new_price s100E_product_price"> BDT3500</span>
+                                    </div>
+                                </div>
+
+                                <div class="s100E_product_rating_wrapper">
+                                    <ul class="s100E_product_rating">
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.03" y1="0.403" x2="0.969"
+                                                        y2="0.408" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="0.51" stop-color="#fbc523" />
+                                                        <stop offset="0.51" stop-color="#d8d5ce" />
+                                                        <stop offset="1" stop-color="#d6d6d6" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--s100E_single_product -->
+                        <div class="s100E_single_product">
+
+                            <div class="s100E_product_top_area s100E_single_product_background">
+
+                                <div class="s100E_product_img_main_wrapper">
+                                    <div class="s100E_product_img_wrapper">
+                                        <img class="s100E_product_img" src="item_image/Imsge.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="s100E_product_batch_wrapper">
+                                    <span class="s100E_product_batch_txt">Sale</span>
+                                </div>
+                                <div class="s100E_wishlist_cart_icon_wrapper">
+                                    <span class="s0604_wishlist_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="9.651" height="9"
+                                            viewBox="0 0 9.651 9">
+                                            <g id="heart_1_" data-name="heart (1)" transform="translate(0.005 -0.917)"
+                                                fill="none">
+                                                <path
+                                                    d="M7.031.917A2.572,2.572,0,0,0,4.82,2.243,2.572,2.572,0,0,0,2.61.917,2.733,2.733,0,0,0,0,3.751c0,2.723,4.4,5.868,4.591,6l.232.164.232-.164c.187-.133,4.591-3.279,4.591-6A2.733,2.733,0,0,0,7.031.917Z"
+                                                    stroke="none" />
+                                                <path
+                                                    d="M 2.62336254119873 1.917606353759766 C 1.688285350799561 1.974246025085449 0.9608860015869141 2.773387908935547 0.9963397979736328 3.713018894195557 L 0.9970502853393555 3.750729084014893 C 0.9970502853393555 5.26716947555542 3.168014526367188 7.429159164428711 4.818565845489502 8.680863380432129 C 5.238452911376953 8.35887336730957 5.981158256530762 7.758644104003906 6.705460548400879 7.022008895874023 C 7.955410003662109 5.750778675079346 8.643790245056152 4.589008808135986 8.643790245056152 3.750729084014893 L 8.644500732421875 3.713018894195557 C 8.679954528808594 2.773387908935547 7.952555656433105 1.974246025085449 7.017477989196777 1.917606353759766 C 6.467202186584473 1.936435699462891 5.962605953216553 2.244806289672852 5.695350170135498 2.727679252624512 L 4.820420265197754 4.308488845825195 L 3.94549036026001 2.727679252624512 C 3.678234577178955 2.244806289672852 3.173638343811035 1.936435699462891 2.62336254119873 1.917606353759766 M 2.609710216522217 0.9169988632202148 C 3.530980110168457 0.9313287734985352 4.374240398406982 1.437278747558594 4.820420265197754 2.243429183959961 C 5.266600131988525 1.437278747558594 6.109860420227051 0.9313287734985352 7.031130313873291 0.9169988632202148 C 8.533160209655762 0.9822587966918945 9.700480461120605 2.248349189758301 9.643790245056152 3.750729084014893 C 9.643790245056152 6.473918914794922 5.240050315856934 9.619958877563477 5.052750110626221 9.752598762512207 L 4.820420265197754 9.916998863220215 L 4.588090419769287 9.752598762512207 C 4.400790214538574 9.619158744812012 -0.002949714660644531 6.473918914794922 -0.002949714660644531 3.750729084014893 C -0.05963993072509766 2.248349189758301 1.10768985748291 0.9822587966918945 2.609710216522217 0.9169988632202148 Z"
+                                                    stroke="rgba(255,255,255,.3)" fill="none" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="s0604_separator">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1" height="10"
+                                            viewBox="0 0 1 10">
+                                            <path id="Path_1938" data-name="Path 1938" d="M0,0V10"
+                                                transform="translate(0.5)" fill="none" stroke="rgba(255,255,255,.3)"
+                                                stroke-width="1" />
+                                        </svg>
+                                    </span>
+                                    <span class="s0604_cart_icon ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9">
+                                            <g id="Union_9" data-name="Union 9" transform="translate(1863 50)"
+                                                fill="none" stroke-linecap="square">
+                                                <path
+                                                    d="M-1857.375-41.75a.75.75,0,0,1,.75-.75.75.75,0,0,1,.75.75.75.75,0,0,1-.75.75A.75.75,0,0,1-1857.375-41.75Zm-3.75,0a.75.75,0,0,1,.75-.75.75.75,0,0,1,.75.75.75.75,0,0,1-.75.75A.75.75,0,0,1-1861.125-41.75Zm.667-1.125a1.125,1.125,0,0,1-1.117-.994l-.594-5.05a.375.375,0,0,0-.372-.331H-1863V-50h.458a1.125,1.125,0,0,1,1.117.994l.016.132H-1854l-.812,4.5h-6.068l.049.418a.375.375,0,0,0,.372.331h4.958v.75Z"
+                                                    stroke="none" />
+                                                <path
+                                                    d="M -1855.6474609375 -45.37534332275391 L -1855.196533203125 -47.87518310546875 L -1861.039672851562 -47.87518310546875 L -1860.745483398438 -45.37534332275391 L -1855.6474609375 -45.37534332275391 M -1856.625 -41.00038146972656 C -1857.0390625 -41.00038146972656 -1857.375 -41.3361930847168 -1857.375 -41.75029373168945 C -1857.375 -42.16440200805664 -1857.0390625 -42.50021362304688 -1856.625 -42.50021362304688 C -1856.2109375 -42.50021362304688 -1855.875122070312 -42.16440200805664 -1855.875122070312 -41.75029373168945 C -1855.875122070312 -41.3361930847168 -1856.2109375 -41.00038146972656 -1856.625 -41.00038146972656 Z M -1860.375 -41.00038146972656 C -1860.789306640625 -41.00038146972656 -1861.124877929688 -41.3361930847168 -1861.124877929688 -41.75029373168945 C -1861.124877929688 -42.16440200805664 -1860.789306640625 -42.50021362304688 -1860.375 -42.50021362304688 C -1859.9609375 -42.50021362304688 -1859.625 -42.16440200805664 -1859.625 -41.75029373168945 C -1859.625 -41.3361930847168 -1859.9609375 -41.00038146972656 -1860.375 -41.00038146972656 Z M -1855.500244140625 -42.87517166137695 L -1860.458251953125 -42.87517166137695 C -1861.0283203125 -42.87551116943359 -1861.50830078125 -43.30244445800781 -1861.575073242188 -43.8687629699707 L -1862.16943359375 -48.91906356811523 C -1862.191650390625 -49.10806274414062 -1862.3515625 -49.25014114379883 -1862.541748046875 -49.25014114379883 L -1863 -49.25014114379883 L -1863 -50.00040435791016 L -1862.541748046875 -50.00040435791016 C -1861.9716796875 -50.00007247924805 -1861.49169921875 -49.57312393188477 -1861.424926757812 -49.00681304931641 L -1861.409423828125 -48.87518310546875 L -1854 -48.87518310546875 L -1854.811645507812 -44.37534332275391 L -1860.8798828125 -44.37534332275391 L -1860.83056640625 -43.95685195922852 C -1860.80859375 -43.76785278320312 -1860.648681640625 -43.62542343139648 -1860.458251953125 -43.62542343139648 L -1855.500244140625 -43.62542343139648 L -1855.500244140625 -42.87517166137695 Z"
+                                                    stroke="rgba(255,255,255,.3)" fill="none" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </div>
+
+
+                            </div>
+
+                            <div class="s100E_product_bottom_area s100E_single_product_bottom_background">
+
+                                <div class="s100E_product_name_wrapper">
+                                    <span class="s100E_product_name">Casual Sun Glass</span>
+                                </div>
+                                <div class="s100E_product_variant_wrapper">
+                                    <span class="s100E_product_variant">Black</span>
+                                </div>
+
+                                <div class="s100E_product_price_wrapper">
+                                    <div class="s100E_product_old_price_wrapper">
+                                        <span class="s100E_product_old_price s100E_product_price"> BDT3500</span>
+                                    </div>
+                                    <div class="s100E_product_new_price_wrapper">
+                                        <span class="s100E_product_new_price s100E_product_price"> BDT3500</span>
+                                    </div>
+                                </div>
+
+                                <div class="s100E_product_rating_wrapper">
+                                    <ul class="s100E_product_rating">
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.03" y1="0.403" x2="0.969"
+                                                        y2="0.408" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="0.51" stop-color="#fbc523" />
+                                                        <stop offset="0.51" stop-color="#d8d5ce" />
+                                                        <stop offset="1" stop-color="#d6d6d6" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--s100E_single_product -->
+                        <div class="s100E_single_product">
+
+                            <div class="s100E_product_top_area s100E_single_product_background">
+
+                                <div class="s100E_product_img_main_wrapper">
+                                    <div class="s100E_product_img_wrapper">
+                                        <img class="s100E_product_img" src="item_image/Imsge.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="s100E_product_batch_wrapper">
+                                    <span class="s100E_product_batch_txt">Sale</span>
+                                </div>
+                                <div class="s100E_wishlist_cart_icon_wrapper">
+                                    <span class="s0604_wishlist_icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="9.651" height="9"
+                                            viewBox="0 0 9.651 9">
+                                            <g id="heart_1_" data-name="heart (1)" transform="translate(0.005 -0.917)"
+                                                fill="none">
+                                                <path
+                                                    d="M7.031.917A2.572,2.572,0,0,0,4.82,2.243,2.572,2.572,0,0,0,2.61.917,2.733,2.733,0,0,0,0,3.751c0,2.723,4.4,5.868,4.591,6l.232.164.232-.164c.187-.133,4.591-3.279,4.591-6A2.733,2.733,0,0,0,7.031.917Z"
+                                                    stroke="none" />
+                                                <path
+                                                    d="M 2.62336254119873 1.917606353759766 C 1.688285350799561 1.974246025085449 0.9608860015869141 2.773387908935547 0.9963397979736328 3.713018894195557 L 0.9970502853393555 3.750729084014893 C 0.9970502853393555 5.26716947555542 3.168014526367188 7.429159164428711 4.818565845489502 8.680863380432129 C 5.238452911376953 8.35887336730957 5.981158256530762 7.758644104003906 6.705460548400879 7.022008895874023 C 7.955410003662109 5.750778675079346 8.643790245056152 4.589008808135986 8.643790245056152 3.750729084014893 L 8.644500732421875 3.713018894195557 C 8.679954528808594 2.773387908935547 7.952555656433105 1.974246025085449 7.017477989196777 1.917606353759766 C 6.467202186584473 1.936435699462891 5.962605953216553 2.244806289672852 5.695350170135498 2.727679252624512 L 4.820420265197754 4.308488845825195 L 3.94549036026001 2.727679252624512 C 3.678234577178955 2.244806289672852 3.173638343811035 1.936435699462891 2.62336254119873 1.917606353759766 M 2.609710216522217 0.9169988632202148 C 3.530980110168457 0.9313287734985352 4.374240398406982 1.437278747558594 4.820420265197754 2.243429183959961 C 5.266600131988525 1.437278747558594 6.109860420227051 0.9313287734985352 7.031130313873291 0.9169988632202148 C 8.533160209655762 0.9822587966918945 9.700480461120605 2.248349189758301 9.643790245056152 3.750729084014893 C 9.643790245056152 6.473918914794922 5.240050315856934 9.619958877563477 5.052750110626221 9.752598762512207 L 4.820420265197754 9.916998863220215 L 4.588090419769287 9.752598762512207 C 4.400790214538574 9.619158744812012 -0.002949714660644531 6.473918914794922 -0.002949714660644531 3.750729084014893 C -0.05963993072509766 2.248349189758301 1.10768985748291 0.9822587966918945 2.609710216522217 0.9169988632202148 Z"
+                                                    stroke="rgba(255,255,255,.3)" fill="none" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="s0604_separator">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1" height="10"
+                                            viewBox="0 0 1 10">
+                                            <path id="Path_1938" data-name="Path 1938" d="M0,0V10"
+                                                transform="translate(0.5)" fill="none" stroke="rgba(255,255,255,.3)"
+                                                stroke-width="1" />
+                                        </svg>
+                                    </span>
+                                    <span class="s0604_cart_icon ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9">
+                                            <g id="Union_9" data-name="Union 9" transform="translate(1863 50)"
+                                                fill="none" stroke-linecap="square">
+                                                <path
+                                                    d="M-1857.375-41.75a.75.75,0,0,1,.75-.75.75.75,0,0,1,.75.75.75.75,0,0,1-.75.75A.75.75,0,0,1-1857.375-41.75Zm-3.75,0a.75.75,0,0,1,.75-.75.75.75,0,0,1,.75.75.75.75,0,0,1-.75.75A.75.75,0,0,1-1861.125-41.75Zm.667-1.125a1.125,1.125,0,0,1-1.117-.994l-.594-5.05a.375.375,0,0,0-.372-.331H-1863V-50h.458a1.125,1.125,0,0,1,1.117.994l.016.132H-1854l-.812,4.5h-6.068l.049.418a.375.375,0,0,0,.372.331h4.958v.75Z"
+                                                    stroke="none" />
+                                                <path
+                                                    d="M -1855.6474609375 -45.37534332275391 L -1855.196533203125 -47.87518310546875 L -1861.039672851562 -47.87518310546875 L -1860.745483398438 -45.37534332275391 L -1855.6474609375 -45.37534332275391 M -1856.625 -41.00038146972656 C -1857.0390625 -41.00038146972656 -1857.375 -41.3361930847168 -1857.375 -41.75029373168945 C -1857.375 -42.16440200805664 -1857.0390625 -42.50021362304688 -1856.625 -42.50021362304688 C -1856.2109375 -42.50021362304688 -1855.875122070312 -42.16440200805664 -1855.875122070312 -41.75029373168945 C -1855.875122070312 -41.3361930847168 -1856.2109375 -41.00038146972656 -1856.625 -41.00038146972656 Z M -1860.375 -41.00038146972656 C -1860.789306640625 -41.00038146972656 -1861.124877929688 -41.3361930847168 -1861.124877929688 -41.75029373168945 C -1861.124877929688 -42.16440200805664 -1860.789306640625 -42.50021362304688 -1860.375 -42.50021362304688 C -1859.9609375 -42.50021362304688 -1859.625 -42.16440200805664 -1859.625 -41.75029373168945 C -1859.625 -41.3361930847168 -1859.9609375 -41.00038146972656 -1860.375 -41.00038146972656 Z M -1855.500244140625 -42.87517166137695 L -1860.458251953125 -42.87517166137695 C -1861.0283203125 -42.87551116943359 -1861.50830078125 -43.30244445800781 -1861.575073242188 -43.8687629699707 L -1862.16943359375 -48.91906356811523 C -1862.191650390625 -49.10806274414062 -1862.3515625 -49.25014114379883 -1862.541748046875 -49.25014114379883 L -1863 -49.25014114379883 L -1863 -50.00040435791016 L -1862.541748046875 -50.00040435791016 C -1861.9716796875 -50.00007247924805 -1861.49169921875 -49.57312393188477 -1861.424926757812 -49.00681304931641 L -1861.409423828125 -48.87518310546875 L -1854 -48.87518310546875 L -1854.811645507812 -44.37534332275391 L -1860.8798828125 -44.37534332275391 L -1860.83056640625 -43.95685195922852 C -1860.80859375 -43.76785278320312 -1860.648681640625 -43.62542343139648 -1860.458251953125 -43.62542343139648 L -1855.500244140625 -43.62542343139648 L -1855.500244140625 -42.87517166137695 Z"
+                                                    stroke="rgba(255,255,255,.3)" fill="none" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </div>
+
+
+                            </div>
+
+                            <div class="s100E_product_bottom_area s100E_single_product_bottom_background">
+
+                                <div class="s100E_product_name_wrapper">
+                                    <span class="s100E_product_name">Casual Sun Glass</span>
+                                </div>
+                                <div class="s100E_product_variant_wrapper">
+                                    <span class="s100E_product_variant">Black</span>
+                                </div>
+
+                                <div class="s100E_product_price_wrapper">
+                                    <div class="s100E_product_old_price_wrapper">
+                                        <span class="s100E_product_old_price s100E_product_price"> BDT3500</span>
+                                    </div>
+                                    <div class="s100E_product_new_price_wrapper">
+                                        <span class="s100E_product_new_price s100E_product_price"> BDT3500</span>
+                                    </div>
+                                </div>
+
+                                <div class="s100E_product_rating_wrapper">
+                                    <ul class="s100E_product_rating">
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="9" height="9" viewBox="0 0 9 9">
+                                                <path id="Star"
+                                                    d="M58.5,71.235,61.281,73l-.736-3.33L63,67.431l-3.236-.292L58.5,64l-1.264,3.139L54,67.431l2.455,2.239L55.719,73Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </li>
+                                        <li class="s100E_product_rating_start"><svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10"
+                                                viewBox="0 0 20 20">
+                                                <defs>
+                                                    <linearGradient id="linear-gradient" x1="0.03" y1="0.403" x2="0.969"
+                                                        y2="0.408" gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ffc312" />
+                                                        <stop offset="0.51" stop-color="#fbc523" />
+                                                        <stop offset="0.51" stop-color="#d8d5ce" />
+                                                        <stop offset="1" stop-color="#d6d6d6" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path id="Star"
+                                                    d="M64,80.077,70.18,84l-1.635-7.4L74,71.625l-7.191-.65L64,64l-2.809,6.976L54,71.625,59.455,76.6,57.82,84Z"
+                                                    transform="translate(-54 -64)" fill="url(#linear-gradient)" />
+                                            </svg>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================================================
+        ============= add_to_cart_successfull_message_area ========
+        ========================================================-->
+
+        <div class="s100E_add_to_cart_successfull_message_area s100E_hide_message_box">
+            <div class="s100E_add_to_cart_successfull_message_wrapper">
+                <div class="s100E_message_close_icon_wrapper">
+                    <button type="button" class="s100E_message_close_icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14.999" viewBox="0 0 15 14.999">
+                            <path id="Cross"
+                                d="M1646.721,3081.085l-6.136,6.136-1.364-1.364,6.137-6.136-6.136-6.136,1.364-1.364,6.136,6.136,6.136-6.136,1.364,1.364-6.135,6.136,6.136,6.136-1.363,1.364Z"
+                                transform="translate(-1639.22 -3072.222)" fill="#95ca33" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="s100E_message_box_wrapper">
+                    <div class="s100E_add_to_cart_icon_wrapper">
+                        <span class="s100E_add_to_cart_icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                <path id="Cart"
+                                    d="M12,4A4,4,0,1,0,4,4H0V14a2,2,0,0,0,2,2H14a2,2,0,0,0,2-2V4ZM8,1.333A2.667,2.667,0,0,1,10.667,4H5.333A2.667,2.667,0,0,1,8,1.333Z"
+                                    fill="#1e272e" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="s100E_message_box">
+                        <div class="s100E_message_successfull_txt_wrapper">
+                            <p class="s100E_message_txt s100E_message_successfull_txt">Added to cart successfully</p>
+                        </div>
+                        <div class="s100E_message_unsuccessfull_txt_wrapper">
+                            <p class="s100E_message_txt s100E_message_unsuccessfull_txt">Something wrong</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script>
+        /*start range slider*/
+        window.onload = function () {
+            slideOne();
+            slideTwo();
+        }
+
+        let s100E_sliderOne = document.getElementById("s100E_slider_1");
+        let s100E_sliderTwo = document.getElementById("s100E_slider_2");
+        let s100E_displayValOne = document.getElementById("range1");
+        let s100E_displayValTwo = document.getElementById("range2");
+        let s100E_minGap = 0;
+        let s100E_sliderTrack = document.querySelector(".s100E_slider_track");
+        let s100E_sliderMaxValue = document.getElementById("s100E_slider_1").max;
+
+        function slideOne() {
+            if (parseInt(s100E_sliderTwo.value) - parseInt(s100E_sliderOne.value) <= s100E_minGap) {
+                s100E_sliderOne.value = parseInt(s100E_sliderTwo.value) - s100E_minGap;
+            }
+            s100E_displayValOne.textContent = s100E_sliderOne.value;
+            fillColor();
+        }
+        function slideTwo() {
+            if (parseInt(s100E_sliderTwo.value) - parseInt(s100E_sliderOne.value) <= s100E_minGap) {
+                s100E_sliderTwo.value = parseInt(s100E_sliderOne.value) + s100E_minGap;
+            }
+            s100E_displayValTwo.textContent = s100E_sliderTwo.value;
+            fillColor();
+        }
+        function fillColor() {
+            s100E_percent1 = (s100E_sliderOne.value / s100E_sliderMaxValue) * 100;
+            s100E_percent2 = (s100E_sliderTwo.value / s100E_sliderMaxValue) * 100;
+            s100E_sliderTrack.style.background = `linear-gradient(to right, rgba(255,255,255,.1) ${s100E_percent1}% , var(--primaryColor) ${s100E_percent1}% , var(--primaryColor) ${s100E_percent2}%, rgba(255,255,255,.1) ${s100E_percent2}%)`;
+        };
+        /*end range slider*/
+
+
+
+        const filter = document.querySelector(".s100E_filter_box_btn");
+        const closeBtn = document.querySelector(".s100E_filter_toggle_btn");
+        const cate_sidebar = document.querySelector(".s100E_all_items_filter_col_wrapper");
+
+        filter.addEventListener("click", function () {
+            cate_sidebar.classList.add("s100E_active_cate_sidebar");
+        })
+        closeBtn.addEventListener("click", function () {
+            cate_sidebar.classList.remove("s100E_active_cate_sidebar");
+        })
+
+
+
+    </script>
+</body>
+
+</html>
